@@ -1,18 +1,35 @@
 import jwtDecode from 'jwt-decode';
+import {getCommonJsonRequestProps} from "../common";
 
-export const login = () => (
-    // todo
-    fetch('url/login', {
+export const login = (credentials) =>
+    fetch('security/login', {
         method: "POST",
+        headers: {
+            ...getCommonJsonRequestProps().headers,
+        },
+        body: JSON.stringify(credentials),
     })
-);
+        .then(response => response.json())
+        .then(jwtResponse => jwtResponse.accessToken)
+        .then(accessToken => {
+            setCurrentUserToken(accessToken);
+            return getCurrentUser();
+        });
 
-export const register = () => (
-    //todo
-    fetch('url/register', {
+export const register = (credentials) =>
+    fetch('security/register', {
         method: "POST",
+        headers: {
+            ...getCommonJsonRequestProps().headers,
+        },
+        body: JSON.stringify(credentials)
     })
-);
+        .then(response => response.json())
+        .then(jwtResponse => jwtResponse.accessToken)
+        .then(accessToken => {
+            setCurrentUserToken(accessToken);
+            return getCurrentUser();
+        });
 
 const setCurrentUserToken = (token) => {
     if (token) {
