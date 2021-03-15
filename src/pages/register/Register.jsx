@@ -9,10 +9,9 @@ const validationSchema = Yup.object({
         .required('Username is required')
         .min(8, "Username must be at least 8 characters long")
         // кастомная функция для проверки, пример, позже нужен будет реджекс
-        .test('username-valid', 'Username must not contain @ ',
-            function (username) {
-                return !(username && username.includes('@'));
-            }),
+        .test('usernameValid', 'Username must not contain @',
+            async username => !((await username) && (await username).includes('@')))
+            ,
     email: Yup
         .string()
         .required('Email is required')
