@@ -2,6 +2,7 @@ import React from 'react'
 import {useFormik} from 'formik';
 import {LoginForm} from "./LoginView";
 import * as Yup from 'yup';
+import {login} from "../../api/securityApi";
 
 const validationSchema = Yup.object({
     email: Yup
@@ -23,6 +24,9 @@ export const Login = props => {
         validationSchema: validationSchema,
         onSubmit: (values) => {
             console.log(`Credentials check success: ${values.email} ${values.password}`);
+            login(values)
+                .then(r => console.log(r))
+                .catch(error => console.log(error));
         }
     })
     return (

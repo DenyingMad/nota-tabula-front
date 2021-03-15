@@ -1,17 +1,18 @@
 import React from 'react'
 import {useFormik} from 'formik';
-import {RegisterForm} from "./RegisterView";
+import {RegisterView} from "./RegisterView";
 import * as Yup from 'yup';
+import {register} from "../../api/securityApi";
 
 const validationSchema = Yup.object({
-    username: Yup
+    login: Yup
         .string()
         .required('Username is required')
-        .min(8, "Username must be at least 8 characters long")
+        .min(4, "Username must be at least 4 characters long")
+        .max(15, "Too long username")
         // кастомная функция для проверки, пример, позже нужен будет реджекс
         .test('usernameValid', 'Username must not contain @',
-            async username => !((await username) && (await username).includes('@')))
-            ,
+            async username => !((await username) && (await username).includes('@'))),
     email: Yup
         .string()
         .required('Email is required')
@@ -25,17 +26,20 @@ const validationSchema = Yup.object({
 export const Register = props => {
     const formik = useFormik({
         initialValues: {
-            username: '',
+            login: '',
             email: '',
             password: '',
         },
         validationSchema: validationSchema,
         onSubmit: (values) => {
             console.log(`Credentials check success: ${values.username} ${values.email} ${values.password}`);
+            register(values)
+                .then(r => console.log(r))
+                .catch(ex => console.log(ex));
         }
     })
     return (
-        <RegisterForm
+        <RegisterView
             values={formik.values}
             handleChange={formik.handleChange}
             handleSubmit={formik.handleSubmit}

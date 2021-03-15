@@ -1,7 +1,7 @@
 import React from "react";
 import {Button, TextField} from "@material-ui/core";
 
-export const RegisterForm = (props) => {
+export const RegisterView = (props) => {
     const values = props.values;
     const handleChange = props.handleChange;
     const handleSubmit = props.handleSubmit;
@@ -11,29 +11,28 @@ export const RegisterForm = (props) => {
         <div>
             <form onSubmit={handleSubmit}>
                 <TextField
-                    id="username"
-                    name="username"
+                    id="reg_username"
+                    name="login"
                     label="Username"
-                    type="username"
-                    value={values.username}
+                    type="text"
+                    value={values.login}
                     onChange={handleChange}
-                    error={touched.username && Boolean(errors.username)}
-                    helperText={touched.username && errors.username}
-                    />
+                    error={touched.login && Boolean(errors.login)}
+                    helperText={touched.login && errors.login}
+                />
                 <TextField
-                    id="email"
+                    id="reg_email"
                     name="email"
                     label="Email"
-                    type="email"
                     value={values.email}
                     onChange={handleChange}
                     error={touched.email && Boolean(errors.email)}
                     helperText={touched.email && errors.email}
                 />
                 <TextField
-                    id="password"
+                    id="reg_password"
                     name="password"
-                    label="password"
+                    label="Password"
                     type="password"
                     value={values.password}
                     onChange={handleChange}

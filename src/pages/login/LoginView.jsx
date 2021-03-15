@@ -12,17 +12,16 @@ export const LoginForm = (props) => {
         <div>
             <form onSubmit={handleSubmit}>
                 <TextField
-                    id="email"
+                    id="login_email"
                     name="email"
                     label="Email"
-                    type="email"
                     value={values.email}
                     onChange={handleChange}
                     error={touched.email && Boolean(errors.email)}
                     helperText={touched.email && errors.email}
                 />
                 <TextField
-                    id="password"
+                    id="login_password"
                     name="password"
                     label="password"
                     type="password"
