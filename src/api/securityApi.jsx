@@ -1,14 +1,13 @@
 import jwtDecode from 'jwt-decode';
-import {getCommonJsonRequestProps} from "../common";
+import {getCommonJsonRequestProps, throwHttpErrors} from "../common";
 
-export const login = (credentials) =>
-    fetch('security/login', {
+export const login = (creds) =>
+    fetch(`/rest/security/login`, {
         method: "POST",
-        headers: {
-            ...getCommonJsonRequestProps().headers,
-        },
-        body: JSON.stringify(credentials),
+        ...getCommonJsonRequestProps(),
+        body: JSON.stringify(creds),
     })
+        .then(throwHttpErrors)
         .then(response => response.json())
         .then(jwtResponse => jwtResponse.accessToken)
         .then(accessToken => {
@@ -16,14 +15,13 @@ export const login = (credentials) =>
             return getCurrentUser();
         });
 
-export const register = (credentials) =>
-    fetch('security/register', {
+export const register = (creds) =>
+    fetch(`/rest/security/register`, {
         method: "POST",
-        headers: {
-            ...getCommonJsonRequestProps().headers,
-        },
-        body: JSON.stringify(credentials)
+        ...getCommonJsonRequestProps(),
+        body: JSON.stringify(creds)
     })
+        .then(throwHttpErrors)
         .then(response => response.json())
         .then(jwtResponse => jwtResponse.accessToken)
         .then(accessToken => {
