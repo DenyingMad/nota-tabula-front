@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {getCurrentUser} from "./api/security";
+import {getCurrentUser} from "./api/securityApi";
 
 const AppContext = React.createContext(null);
 
