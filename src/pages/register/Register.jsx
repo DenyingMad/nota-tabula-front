@@ -4,7 +4,6 @@ import {RegisterView} from "./RegisterView";
 import * as Yup from 'yup';
 import {register} from "../../api/securityApi";
 
-
 const validationSchema = Yup.object({
     login: Yup
         .string()

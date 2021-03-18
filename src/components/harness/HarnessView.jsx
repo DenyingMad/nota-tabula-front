@@ -4,7 +4,6 @@ import {Link, withRouter} from "react-router-dom";
 import DashboardIcon from '@material-ui/icons/Dashboard';
 import AssessmentIcon from '@material-ui/icons/Assessment';
 
-
 const HarnessView = (props) => {
     const {children} = props;
     return (
