@@ -1,5 +1,6 @@
 import React from 'react';
 import AppView from "./AppView";
+import {withRouter} from "react-router-dom";
 
 const App = () => {
     return (
@@ -7,4 +8,4 @@ const App = () => {
     );
 };
 
-export default App;
+export default withRouter(App);
