@@ -4,16 +4,23 @@ import {RegisterView} from "./RegisterView";
 import * as Yup from 'yup';
 import {register} from "../../api/securityApi";
 import {passwordValidation} from "../../utils/credentialsValidation";
+import {usernameValidation} from "../../utils/credentialsValidation";
 
 const validationSchema = Yup.object({
     login: Yup
         .string()
         .required('Username is required')
         .min(6, "Username must be at least 4 characters long")
-        .max(30, "Too long username")
-        // кастомная функция для проверки, пример, позже нужен будет реджекс
-        .test('usernameValid', 'Username must not contain @',
-            async username => !((await username) && (await username).includes('@'))),
+        .max(30, "Username is too long")
+        .test("asyncUsernameValidation", "Default error message", function (value) {
+            return usernameValidation(value)
+                .then((response) => {
+                    return true;
+                })
+                .catch((errorMessage) => {
+                    return this.createError({ message: errorMessage });
+                });
+        }),
     email: Yup
         .string()
         .required('Email is required')

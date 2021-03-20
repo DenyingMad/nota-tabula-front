@@ -38,3 +38,37 @@ export const passwordValidation = (password) => {
         resolve("Password is good")
     })
 }
+
+export const usernameValidation = (username) => {
+    return new Promise((resolve, reject) => {
+        let dynamicErrorMsg = "Default dynamic error message.";
+        // regex
+        const firstPeriod = /^[.]/,
+            lastPeriod = /[.]$/,
+            space = /\s/,
+            consecutiveDots = /[.]{2,}/,
+            special = /[@&=_'+,<>-]/;
+        // tests
+        if (space.test(username)) {
+            dynamicErrorMsg = "Username cannot contain space."
+            reject(dynamicErrorMsg)
+        }
+        if (firstPeriod.test(username)) {
+            dynamicErrorMsg = "Username cannot start or end with ( . )."
+            reject(dynamicErrorMsg)
+        }
+        if (lastPeriod.test(username)) {
+            dynamicErrorMsg = "Username cannot start or end with ( . )."
+            reject(dynamicErrorMsg)
+        }
+        if (consecutiveDots.test(username)) {
+            dynamicErrorMsg = "Username cannot contain two or more ( . ) in a row."
+            reject(dynamicErrorMsg)
+        }
+        if (special.test(username)) {
+            dynamicErrorMsg = "Username cannot contain these symbols: ( @&=_'+,<>- )."
+            reject(dynamicErrorMsg)
+        }
+        resolve(true);
+    });
+}
