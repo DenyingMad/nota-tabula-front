@@ -18,7 +18,7 @@ const z_function = (password) => {
 }
 
 const checkPasswordWeakness = (password) => {
-    const z = z_function(password);
+    const z = z_function(password.toLowerCase());
     z[0] = 0;
     return Math.max(...z);
 }
