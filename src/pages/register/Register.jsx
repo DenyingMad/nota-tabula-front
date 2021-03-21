@@ -50,7 +50,7 @@ export const Register = props => {
         },
         validationSchema: validationSchema,
         onSubmit: (values) => {
-            console.log(`Credentials check success: ${values.username} ${values.email} ${values.password}`);
+            console.log(`Credentials check success: ${values.login} ${values.email} ${values.password}`);
             register(values)
                 .then(r => console.log(r))
                 .catch(ex => console.log(ex));
