@@ -10,7 +10,7 @@ const validationSchema = Yup.object({
     login: Yup
         .string()
         .required('Username is required')
-        .min(6, "Username must be at least 4 characters long")
+        .min(5, "Username must be at least 4 characters long")
         .max(30, "Username is too long")
         .test("asyncUsernameValidation", "Default error message", function (value) {
             return usernameValidation(value)

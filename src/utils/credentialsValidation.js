@@ -36,32 +36,33 @@ export const passwordValidation = (password) => {
         // tests
         if (space.test(password)) {
             score--;
-            dynamicErrorMsg =  "Пароль не должен быть пустым или содержать пробелы";
-            reject(dynamicErrorMsg);
+            dynamicErrorMsg =  "Password cannot contain spaces";
         }
-        if (!upper.test(password)) {
+        if (score > 4 && !upper.test(password)) {
             score--;
             dynamicErrorMsg = "Password must contain at least one uppercase letter";
-            reject(dynamicErrorMsg);
         }
-        if (!lower.test(password)) {
+        if (score > 4 && !lower.test(password)) {
             score--;
             dynamicErrorMsg = "Password must contain at least one lowercase letter";
-            reject(dynamicErrorMsg);
         }
-        if (!number.test(password)) {
+        if (score > 4 && !number.test(password)) {
             score--;
             dynamicErrorMsg = "Password must contain at least one number";
-            reject(dynamicErrorMsg);
         }
-        if (!special.test(password)) {
+        if (score > 4 && !special.test(password)) {
             score--;
             dynamicErrorMsg = "Password must contain at least one special character";
-            reject(dynamicErrorMsg);
         }
-        if (score - checkPasswordWeakness(password) <= 0) {
-            dynamicErrorMsg = "Password is too weak";
-            reject(dynamicErrorMsg);
+        if (score < 5) {
+            if(score - checkPasswordWeakness(password) <= 0) {
+                reject(dynamicErrorMsg+" and matches a commonly used pattern.")
+            }
+            reject(dynamicErrorMsg+".")
+        }
+        else if (score - checkPasswordWeakness(password) <= 0) {
+            dynamicErrorMsg = "Password matches a commonly used pattern."
+            reject(dynamicErrorMsg)
         }
         resolve("Password is good")
     })

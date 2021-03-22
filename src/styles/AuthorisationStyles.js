@@ -1,5 +1,4 @@
 import makeStyles from "@material-ui/core/styles/makeStyles";
-import createMuiTheme from "@material-ui/core/styles/createMuiTheme";
 
 export const useStyles = makeStyles((theme) => ({
     root: {
@@ -21,31 +20,42 @@ export const useStyles = makeStyles((theme) => ({
         marginLeft: '1.25rem',
     },
     inputElement: {
-        marginBottom: '1rem',
-        marginTop: '0.5em',
+        marginBottom: '0.25rem',
+        marginTop: '0.5rem',
     },
-    signInButton: {
+    inputLabel: {
+        marginLeft: '-15px', // margin 0 doesnt work
+        marginTop: '-5px',
+        color: 'black',
+    },
+    inputField: {
+        marginTop: '2rem',
+        backgroundColor: '#f5f5f5'
+    },
+    authButtonMargin: {
+        marginTop: "1rem",
         marginBottom: '2rem',
-        //backgroundColor: 'rgb(70, 190, 161)',
+    },
+    checkMarkButton: {
+        marginTop: '0.5rem',
+        marginLeft: '1.25rem',
     },
     upperTitle: {
         marginTop: '2rem',
-        marginBottom: '1rem',
+        marginBottom: '0rem',
     },
     lowerText: {
         marginTop: '1rem',
         marginBottom: '1rem',
-    }
-}));
-
-// button color, does not work yet
-export const  buttonTheme = createMuiTheme({
-    palette: {
-        primary: {
-            light: '#7df1d2',
-            main: '#46bea1',
-            dark: '#008d73',
-            contrastText: '#fff',
+    },
+    authButtonStyled: {
+        textTransform: 'none',
+        backgroundColor: '#3cc9a7',
+        '&:hover': {
+            backgroundColor: '#46bea1',
         },
     },
-});
+    forgotLink: {
+        marginTop: '0.25rem',
+    }
+}));

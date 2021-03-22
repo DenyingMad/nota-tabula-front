@@ -6,9 +6,11 @@ import Visibility from "@material-ui/icons/Visibility";
 import VisibilityOff from "@material-ui/icons/VisibilityOff";
 import Typography from '@material-ui/core/Typography';
 import Paper from '@material-ui/core/Paper';
-import {buttonTheme, useStyles} from "./RegisterStyles";
+import {useStyles} from "../../styles/AuthorisationStyles";
 import clsx from "clsx";
 import Link from "@material-ui/core/Link";
+import FormControlLabel from "@material-ui/core/FormControlLabel";
+import Checkbox from "@material-ui/core/Checkbox";
 
 export const RegisterView = (props) => {
     const values = props.values;
@@ -20,8 +22,10 @@ export const RegisterView = (props) => {
     const classes = useStyles();
     // password visibility hooks
     const [showPassword, setShowPassword] = useState(false);
+    const [checkMark, setCheckMark] = useState(false);
     const handleClickShowPassword = () => setShowPassword(!showPassword);
     const handleMouseDownPassword = () => setShowPassword(!showPassword);
+    const handleCheckMark = () => setCheckMark(!checkMark);
     // placeholder for link
     const preventDefault = (event) => event.preventDefault();
     return (
@@ -36,8 +40,19 @@ export const RegisterView = (props) => {
                         id="reg_username"
                         name="login"
                         label="Username"
-                        type="text"
                         variant="outlined"
+                        InputLabelProps={{
+                            shrink: false,
+                            classes: {
+                                root: classes.inputLabel
+                            }
+                        }}
+                        InputProps={{
+                            classes: {
+                                root: classes.inputField
+                            }
+                        }}
+                        type="text"
                         size="small"
                         value={values.login}
                         onChange={handleChange}
@@ -50,6 +65,17 @@ export const RegisterView = (props) => {
                         name="email"
                         label="Email address"
                         variant="outlined"
+                        InputLabelProps={{
+                            shrink: false,
+                            classes: {
+                                root: classes.inputLabel
+                            }
+                        }}
+                        InputProps={{
+                            classes: {
+                                root: classes.inputField
+                            }
+                        }}
                         size="small"
                         value={values.email}
                         onChange={handleChange}
@@ -61,10 +87,18 @@ export const RegisterView = (props) => {
                         id="reg_password"
                         name="password"
                         label="Password"
-                        size="small"
                         variant="outlined"
+                        InputLabelProps={{
+                            shrink: false,
+                            classes: {
+                                root: classes.inputLabel
+                            }
+                        }}
                         type={showPassword ? "text" : "password"}
                         InputProps={{
+                            classes: {
+                                root: classes.inputField
+                            },
                             endAdornment: (
                                 <InputAdornment position="end">
                                     <IconButton
@@ -77,17 +111,39 @@ export const RegisterView = (props) => {
                                 </InputAdornment>
                             )
                         }}
-                        variant="outlined"
+                        size="small"
                         value={values.password}
                         onChange={handleChange}
                         error={touched.password && Boolean(errors.password)}
                         helperText={touched.password && errors.password}
                     />
-                        <Button className={clsx(classes.signInButton, classes.sideMargin)} type="submit">
-                            <Typography variant="body1" align="center" gutterBottom>
-                                Create an account
+                    <FormControlLabel
+                        control={
+                            <Checkbox
+                                className={classes.checkMarkButton}
+                                checked={checkMark}
+                                onChange={handleCheckMark}
+                                name="announcementsCheckmark"
+                                color="primary"
+                            />
+                        }
+                        label={
+                            <Typography variant="caption">
+                                Send me occasional product updates, announcements and offers.
                             </Typography>
-                        </Button>
+                        }
+                    />
+                    <Button
+                        className={clsx(
+                            classes.authButtonMargin,
+                            classes.sideMargin,
+                            classes.authButtonStyled
+                        )}
+                        type="submit">
+                        <Typography variant="body1">
+                            Create an account
+                        </Typography>
+                    </Button>
                 </form>
             </Paper>
             <Paper elevation={3}>
