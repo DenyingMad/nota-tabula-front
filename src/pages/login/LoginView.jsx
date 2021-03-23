@@ -5,6 +5,10 @@ import Typography from "@material-ui/core/Typography";
 import Link from "@material-ui/core/Link";
 import clsx from "clsx";
 import {useLoginStyles} from "./LoginStyles";
+import InputAdornment from "@material-ui/core/InputAdornment";
+import IconButton from "@material-ui/core/IconButton";
+import Visibility from "@material-ui/icons/Visibility";
+import VisibilityOff from "@material-ui/icons/VisibilityOff";
 
 
 export const LoginForm = (props) => {
@@ -51,7 +55,6 @@ export const LoginForm = (props) => {
                             id="login_password"
                             name="password"
                             label="Password"
-                            type="password"
                             variant="outlined"
                             InputLabelProps={{
                                 shrink: false,
@@ -59,10 +62,21 @@ export const LoginForm = (props) => {
                                     root: classes.inputLabel
                                 }
                             }}
+                            type={props.passwordVisibility ? "text" : "password"}
                             InputProps={{
                                 classes: {
                                     root: classes.inputField
-                                }
+                                },
+                                endAdornment: (
+                                    <InputAdornment position="end">
+                                        <IconButton
+                                            aria-label="toggle password visibility"
+                                            onClick={props.handlerPassword}
+                                        >
+                                            {props.passwordVisibility ? <Visibility/> : <VisibilityOff/>}
+                                        </IconButton>
+                                    </InputAdornment>
+                                )
                             }}
                             size="small"
                             value={values.password}

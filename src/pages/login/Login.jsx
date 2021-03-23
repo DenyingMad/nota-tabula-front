@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useState} from 'react'
 import {useFormik} from 'formik';
 import {LoginForm} from "./LoginView";
 import * as Yup from 'yup';
@@ -27,7 +27,9 @@ export const Login = props => {
                 .then(r => console.log(r))
                 .catch(error => console.log(error));
         }
-    })
+    });
+    const [showPassword, setShowPassword] = useState(false);
+    const handleClickShowPassword = () => setShowPassword(!showPassword);
     return (
         <LoginForm
             values={formik.values}
@@ -35,6 +37,8 @@ export const Login = props => {
             handleSubmit={formik.handleSubmit}
             errors={formik.errors}
             touched={formik.touched}
+            passwordVisibility={showPassword}
+            handlerPassword={handleClickShowPassword}
         />
     )
 }
