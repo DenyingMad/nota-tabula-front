@@ -32,35 +32,28 @@ export const passwordValidation = (password) => {
             number = /[0-9]/,
             space = /\s/,
             special = /[!#$%&'()*+,./:;<=>?@^_{|}~-]/;
-        let score = 5;
         // tests
         if (space.test(password)) {
-            score--;
             dynamicErrorMsg =  "Password cannot contain spaces";
+            reject(dynamicErrorMsg);
         }
-        if (score > 4 && !upper.test(password)) {
-            score--;
+        if (!upper.test(password)) {
             dynamicErrorMsg = "Password must contain at least one uppercase letter";
+            reject(dynamicErrorMsg)
         }
-        if (score > 4 && !lower.test(password)) {
-            score--;
+        if (!lower.test(password)) {
             dynamicErrorMsg = "Password must contain at least one lowercase letter";
+            reject(dynamicErrorMsg)
         }
-        if (score > 4 && !number.test(password)) {
-            score--;
+        if (!number.test(password)) {
             dynamicErrorMsg = "Password must contain at least one number";
+            reject(dynamicErrorMsg)
         }
-        if (score > 4 && !special.test(password)) {
-            score--;
+        if (!special.test(password)) {
             dynamicErrorMsg = "Password must contain at least one special character";
+            reject(dynamicErrorMsg)
         }
-        if (score < 5) {
-            if(score - checkPasswordWeakness(password) <= 0) {
-                reject(dynamicErrorMsg+" and matches a commonly used pattern.")
-            }
-            reject(dynamicErrorMsg+".")
-        }
-        else if (score - checkPasswordWeakness(password) <= 0) {
+        if (checkPasswordWeakness(password) >= 5) {
             dynamicErrorMsg = "Password matches a commonly used pattern."
             reject(dynamicErrorMsg)
         }

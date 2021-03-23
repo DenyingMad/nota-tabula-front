@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useState} from 'react'
 import {useFormik} from 'formik';
 import {RegisterView} from "./RegisterView";
 import * as Yup from 'yup';
@@ -10,7 +10,7 @@ const validationSchema = Yup.object({
     login: Yup
         .string()
         .required('Username is required')
-        .min(5, "Username must be at least 4 characters long")
+        .min(5, "Username must be at least 5 characters long")
         .max(30, "Username is too long")
         .test("asyncUsernameValidation", "Default error message", function (value) {
             return usernameValidation(value)
@@ -50,12 +50,15 @@ export const Register = props => {
         },
         validationSchema: validationSchema,
         onSubmit: (values) => {
-            console.log(`Credentials check success: ${values.login} ${values.email} ${values.password}`);
             register(values)
                 .then(r => console.log(r))
                 .catch(ex => console.log(ex));
         }
-    })
+    });
+    const [showPassword, setShowPassword] = useState(false);
+    const [checkMark, setCheckMark] = useState(false);
+    const handleClickShowPassword = () => setShowPassword(!showPassword);
+    const handleCheckBox = () => setCheckMark(!checkMark);
     return (
         <RegisterView
             values={formik.values}
@@ -63,6 +66,10 @@ export const Register = props => {
             handleSubmit={formik.handleSubmit}
             errors={formik.errors}
             touched={formik.touched}
+            passwordVisibility={showPassword}
+            handlerPassword={handleClickShowPassword}
+            checkBoxState={checkMark}
+            handleCheckBox={handleCheckBox}
         />
     )
 }

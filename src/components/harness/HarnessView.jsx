@@ -3,13 +3,15 @@ import {Container, Divider, Drawer, List, ListItem, ListItemIcon, ListItemText, 
 import {Link, withRouter} from "react-router-dom";
 import DashboardIcon from '@material-ui/icons/Dashboard';
 import AssessmentIcon from '@material-ui/icons/Assessment';
+import {globalStyles, useCommonStyles} from "../../styles/globalStyles";
 
 const HarnessView = (props) => {
     const {children} = props;
+    const classes = useCommonStyles();
     return (
         <div>
             <LeftToolBar/>
-            <Container>
+            <Container className={classes.mainContainer}>
                 {children}
             </Container>
         </div>

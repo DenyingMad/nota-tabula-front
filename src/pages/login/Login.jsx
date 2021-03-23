@@ -23,7 +23,6 @@ export const Login = props => {
         },
         validationSchema: validationSchema,
         onSubmit: (values) => {
-            console.log(`Credentials check success: ${values.email} ${values.password}`);
             login(values)
                 .then(r => console.log(r))
                 .catch(error => console.log(error));
