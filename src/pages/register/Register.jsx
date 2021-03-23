@@ -1,10 +1,24 @@
-import React, {useState} from 'react'
+import React, {useContext, useState} from 'react'
 import {useFormik} from 'formik';
 import {RegisterView} from "./RegisterView";
 import * as Yup from 'yup';
-import {register} from "../../api/securityApi";
-import {passwordValidation} from "../../utils/credentialsValidation";
-import {usernameValidation} from "../../utils/credentialsValidation";
+import {passwordValidation, usernameValidation} from "../../utils/credentialsValidation";
+import {AppContext} from "../../AppContext";
+import * as securityApi from "../../api/securityApi";
+
+const handleRegister = (history, context, setContext, setError) => (values) => {
+    return securityApi.register(values)
+        .then(currentUser => {
+            setContext({...context, currentUser});
+            if (!currentUser)
+                return currentUser;
+            return history.push("/dashboard");
+        })
+        .catch(error => {
+            setError("Login or email are already taken.");
+            console.log(error);
+        });
+};
 
 const validationSchema = Yup.object({
     login: Yup
@@ -18,7 +32,7 @@ const validationSchema = Yup.object({
                     return true;
                 })
                 .catch((errorMessage) => {
-                    return this.createError({ message: errorMessage });
+                    return this.createError({message: errorMessage});
                 });
         }),
     email: Yup
@@ -36,12 +50,18 @@ const validationSchema = Yup.object({
                     return true;
                 })
                 .catch((errorMessage) => {
-                    return this.createError({ message: errorMessage });
+                    return this.createError({message: errorMessage});
                 });
         })
 })
 
 export const Register = props => {
+    const [context, setContext] = useContext(AppContext);
+    const [registerError, setRegisterError] = useState();
+
+    const {history, location} = props;
+    const onRegister = handleRegister(history, location, context, setContext, setRegisterError);
+
     const formik = useFormik({
         initialValues: {
             login: '',
@@ -50,9 +70,7 @@ export const Register = props => {
         },
         validationSchema: validationSchema,
         onSubmit: (values) => {
-            register(values)
-                .then(r => console.log(r))
-                .catch(ex => console.log(ex));
+            return onRegister(values);
         }
     });
     const [showPassword, setShowPassword] = useState(false);
@@ -65,6 +83,7 @@ export const Register = props => {
             handleChange={formik.handleChange}
             handleSubmit={formik.handleSubmit}
             errors={formik.errors}
+            message={registerError}
             touched={formik.touched}
             passwordVisibility={showPassword}
             handlerPassword={handleClickShowPassword}

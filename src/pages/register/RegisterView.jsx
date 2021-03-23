@@ -121,6 +121,9 @@ export const RegisterView = (props) => {
                                 </Typography>
                             }
                         />
+                        {props.message ?
+                            <Typography variant="body1" color="error">{props.message}</Typography>
+                            : null}
                         <Button
                             className={clsx(
                                 classes.submitButton

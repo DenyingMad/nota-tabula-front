@@ -91,6 +91,9 @@ export const LoginForm = (props) => {
                             underline="none">
                             {' Forgot password?'}
                         </Link>
+                        {props.message ?
+                            <Typography variant="body1" color="error">{props.message}</Typography>
+                            : null}
                         <Button
                             className={classes.submitButton}
                             type="submit">
