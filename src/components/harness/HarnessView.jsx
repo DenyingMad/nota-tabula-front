@@ -9,7 +9,7 @@ const HarnessView = (props) => {
     const {children} = props;
     const classes = useCommonStyles();
     return (
-        <div>
+        <div className={classes.flexRow}>
             <LeftToolBar/>
             <Container className={classes.mainContainer}>
                 {children}

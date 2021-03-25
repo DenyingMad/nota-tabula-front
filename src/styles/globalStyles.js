@@ -7,6 +7,10 @@ export const globalStyles = theme => ({
         border: '1px solid #000',
         borderRadius: 10
     },
+    flexRow: {
+        display: "flex",
+        flexDirection: "row",
+    },
     flexColumn: {
         display: 'flex',
         flexDirection: 'column',
@@ -24,6 +28,14 @@ export const globalStyles = theme => ({
             backgroundColor: '#46bea1',
         },
     },
+    addItemButton: {
+        margin: '0.25rem 0 1rem 0',
+        textTransform: 'none',
+        backgroundColor: '#00acc1',
+        '&:hover': {
+            backgroundColor: '#0097a7',
+        },
+    }
 });
 
 export const useCommonStyles = makeStyles(globalStyles, {name: 'commonStyles'});
