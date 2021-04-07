@@ -8,12 +8,7 @@ const leftContainerStyles = theme => ({
         width: "100%",
         padding: "2rem 1.25rem 2rem 1.25rem",
         borderRight: "1px solid blue",
-        maxHeight: "30rem",
-        height: "100vh",
         gap: "0.5rem",
-    },
-    forceBottom: {
-        marginTop: "auto",
     },
     elementWithButton: {
         display: 'flex',

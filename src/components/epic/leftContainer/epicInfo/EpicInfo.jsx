@@ -6,8 +6,8 @@ export const EpicInfo = (props) => {
         <Card
         >
             Epic info will go here<br/>
-            Total Task Lists<br/>
-            Total Tasks<br/>
+            Total Task Lists: {props.totalTaskLists}<br/>
+            Total Tasks: {props.totalTasks}<br/>
             etc.
         </Card>
     )

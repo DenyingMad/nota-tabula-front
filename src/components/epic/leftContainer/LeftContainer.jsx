@@ -1,15 +1,13 @@
 import React from "react";
 import {IconButton, Typography} from "@material-ui/core";
-import {useLeftContainerStyles} from "./leftContainerStyles";
+import {useLeftContainerStyles} from "./LeftContainerStyles";
 import clsx from "clsx";
 import {EpicInfo} from "./epicInfo/EpicInfo";
-import {SharedWith} from "./sharedWith/sharedWith";
-import Button from "@material-ui/core/Button";
+import {SharedWith} from "./sharedWith/SharedWith";
 import {Create} from "@material-ui/icons";
 
 export const LeftContainer = (props) => {
     const classes = useLeftContainerStyles();
-    const epicData = props.epicData;
     return (
         <div className={clsx(classes.epicSideBar, classes.flexColumn)}>
             <div className={classes.elementWithButton}>
@@ -17,7 +15,7 @@ export const LeftContainer = (props) => {
                     variant="h5"
                     align="center"
                     >
-                    {epicData.epicName}
+                    {props.epicDetails.epicName}
                 </Typography>
                 <IconButton
                     aria-label="edit"
@@ -31,12 +29,14 @@ export const LeftContainer = (props) => {
             <Typography
                 variant="body1"
                 >
-                {epicData.description}
+                {props.epicDetails.epicDescription}
             </Typography>
-            <EpicInfo/>
+            <EpicInfo
+                totalTasks={props.epicDetails.totalTasks}
+                totalTaskLists={props.epicDetails.totalTaskLists}
+            />
             <SharedWith
-                style={classes.forceBottom}
-                epicData={epicData}
+                style={classes.flexForceBottom}
             />
         </div>
     )

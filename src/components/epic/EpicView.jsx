@@ -1,38 +1,32 @@
-import React from "react";
-import {useEpicStyles} from "./EpicStyles";
+import React, {useState} from "react";
 import clsx from "clsx";
-import {LeftContainer} from "./leftContainer/leftContainer";
-import {RightContainer} from "./rightContainer/rightContainer";
+import {LeftContainer} from "./leftContainer/LeftContainer";
+import {RightContainer} from "./rightContainer/RightContainer";
 import Card from "@material-ui/core/Card";
-import Button from "@material-ui/core/Button";
-import {Add} from "@material-ui/icons";
-import Typography from "@material-ui/core/Typography";
+import {useEpicStyles} from "./EpicStyles";
+import {createTaskList} from "../../api/epicApi";
 
 export const EpicView = (props) => {
     const classes = useEpicStyles();
+    const [taskLists, setTaskLists] = useState(props.epicData.taskLists);
+    const handlerAddTaskList = (epicId) => {
+        createTaskList(epicId)
+            .then(r => {
+                setTaskLists([...taskLists,r])
+            })
+            .catch(error => console.log(error));
+    };
     return (
-        <div className={classes.flexColumn}>
-            <Card className={clsx(classes.mainEpicContainer)}>
-                <LeftContainer
-                    epicData={props.epicData}
-                    />
-                <RightContainer
-                    epicData={props.epicData}
-                    />
-            </Card>
-            <Button
-                className={clsx(
-                    classes.addItemButton,
-                    classes.addEpicButton
-                )}
-                variant="contained"
-                startIcon={<Add />}
-                // onClick={}
-            >
-                <Typography variant="body1">
-                    Add Epic
-                </Typography>
-            </Button>
-        </div>
+        <Card className={clsx(classes.flexRow, classes.epicContainer)}>
+            <LeftContainer
+                epicId={props.epicData.epicId}
+                epicDetails={props.epicData.details}
+            />
+            <RightContainer
+                epicId={props.epicData.epicId}
+                taskLists={taskLists}
+                handlerAddTaskList={handlerAddTaskList}
+            />
+        </Card>
     )
 };

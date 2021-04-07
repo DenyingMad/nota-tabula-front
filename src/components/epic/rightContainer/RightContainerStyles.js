@@ -10,20 +10,21 @@ const rightContainerStyles = theme => ({
         alignItems: "center",
         padding: "0 1rem 0 1rem",
         gap: "0.25rem",
+        overflowY: "auto",
     },
-    forceBottom: {
-        marginTop: "auto",
+    tabsBar: {
+        maxWidth: "30rem",
+        marginBottom: "0.5rem",
     },
-    buttonsContainer: {
-        display: 'flex',
-        alignItems: 'center',
-        flexWrap: 'wrap',
-        gap: "0.25rem",
-        marginBottom: "1rem",
-    },
-    switchButton: {
+    tab: {
         textTransform: "none",
+        padding: "0.25rem 0.5rem 0.25rem 0.5rem",
         fontSize: "small",
+        minWidth: "8rem",
+    },
+    iconLabel: {
+        alignItems: "center",
+        gap: "0.25rem",
     }
 });
 

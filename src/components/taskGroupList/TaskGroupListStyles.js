@@ -11,10 +11,14 @@ const taskListsStyles = theme => ({
         marginLeft: "2rem",
         color: "#D3D3D3"
     },
-    listItem: {
-        // mb use accordion spacing?
+    accordionItems: {
         marginBottom: "0.5rem",
-    }
+    },
+    summaryItems: {
+        gap: "0.25rem",
+        alignItems: "center",
+        width: "100%",
+    },
 });
 
 export const useTaskListsStyles = makeStyles(taskListsStyles, {name: "TaskListsStyles"});

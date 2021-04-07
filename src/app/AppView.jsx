@@ -5,14 +5,14 @@ import {Register} from "../pages/register/Register";
 import {Login} from "../pages/login/Login";
 import Stub from "../pages/stub/Stub";
 import AuthRoute from "../security/AuthRoute";
-import {Epic} from "../components/epic/Epic";
+import {Dashboard} from "../pages/dashboard/Dashboard";
 
 const AppView = () => {
     return (
         <Switch>
             <Route path="/login" component={Login} exact/>
             <Route path="/join" component={Register} exact/>
-            <AuthRoute path="/dashboard" component={Epic} exact/>
+            <AuthRoute path="/dashboard" component={Dashboard} exact/>
             <AuthRoute path="/reports" component={Stub} exact/>
         </Switch>
     );

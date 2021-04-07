@@ -35,6 +35,18 @@ export const globalStyles = theme => ({
         '&:hover': {
             backgroundColor: '#0097a7',
         },
+    },
+    fullWidth: {
+        width: "100%",
+    },
+    flexForceRight: {
+        marginLeft: "auto",
+    },
+    flexForceBottom: {
+        marginTop: "auto",
+    },
+    flexForceLeft: {
+        marginRight: "auto",
     }
 });
 
