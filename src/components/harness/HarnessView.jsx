@@ -1,15 +1,5 @@
 import React from 'react';
-import {
-    Container,
-    Divider,
-    Drawer,
-    List,
-    ListItem,
-    ListItemIcon,
-    ListItemText,
-    makeStyles,
-    useTheme
-} from "@material-ui/core";
+import {Container, Divider, Drawer, List, ListItem, ListItemIcon, ListItemText, useTheme} from "@material-ui/core";
 import {Link, withRouter} from "react-router-dom";
 import DashboardIcon from '@material-ui/icons/Dashboard';
 import AssessmentIcon from '@material-ui/icons/Assessment';
@@ -19,7 +9,7 @@ import AppBar from "@material-ui/core/AppBar";
 import IconButton from "@material-ui/core/IconButton";
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
-import {ArrowBackIos, ChevronLeft, ChevronRight, Menu} from "@material-ui/icons";
+import {ChevronLeft, ChevronRight, Menu} from "@material-ui/icons";
 
 const HarnessView = (props) => {
     const {children} = props;
@@ -78,16 +68,6 @@ const SECTIONS = [
         sectionName: 'Reports',
         Icon: AssessmentIcon,
         href: '/reports',
-    },
-    {
-        sectionName: 'Login',
-        Icon: DashboardIcon,
-        href: '/login',
-    },
-    {
-        sectionName: 'Register',
-        Icon: DashboardIcon,
-        href: '/join',
     },
 ]
 
