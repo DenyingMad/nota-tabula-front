@@ -31,9 +31,9 @@ export const globalStyles = theme => ({
     addItemButton: {
         margin: '0.25rem 0 1rem 0',
         textTransform: 'none',
-        backgroundColor: '#00acc1',
+        backgroundColor: '#b3e5fc',
         '&:hover': {
-            backgroundColor: '#0097a7',
+            backgroundColor: '#81d4fa',
         },
     },
     fullWidth: {
@@ -47,6 +47,16 @@ export const globalStyles = theme => ({
     },
     flexForceLeft: {
         marginRight: "auto",
+    },
+    renameButton: {
+        backgroundColor: "#fff",
+        border: "0px",
+    },
+    scrollY: {
+        overflowY: "auto",
+    },
+    removeElement: {
+        display: "none",
     }
 });
 

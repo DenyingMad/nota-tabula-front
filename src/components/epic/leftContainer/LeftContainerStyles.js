@@ -1,5 +1,5 @@
 import makeStyles from "@material-ui/core/styles/makeStyles";
-import {globalStyles} from "../../../styles/globalStyles";
+import {globalStyles} from "../../../styles/GlobalStyles";
 
 const leftContainerStyles = theme => ({
     ...globalStyles(theme),
@@ -21,7 +21,7 @@ const leftContainerStyles = theme => ({
         '&:hover': {
             backgroundColor: '#9e9e9e',
         },
-    }
+    },
 });
 
 export const useLeftContainerStyles = makeStyles(leftContainerStyles, {name: "EpicLeftSideStyles"});

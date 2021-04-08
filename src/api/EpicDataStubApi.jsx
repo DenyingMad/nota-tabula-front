@@ -14,7 +14,7 @@ const epicDataDefault = {
     "taskLists": [
         {
             "taskListName": "string",
-            "id": 1,
+            "taskListId": 1,
             "tasks": [
                 {
                     "assigned": {
@@ -50,7 +50,7 @@ const epicDataNew = [
         "taskLists": [
             {
                 "taskListName": "Sprint Activities",
-                "id": 0,
+                "taskListId": 0,
                 "tasks": [
                     {
                         "assigned": {
@@ -89,7 +89,7 @@ const epicDataNew = [
             },
             {
                 "taskListName": "Engine",
-                "id": 1,
+                "taskListId": 1,
                 "tasks": [
                     {
                         "assigned": {
@@ -149,16 +149,13 @@ const epicDataNew = [
                 ]
             }
         ],
-        "epicId": "uuid"
+        "epicId": "epic_1"
     },
 ];
 
-// export const getEpicData = () => {
-//     return userEpicData;
-// }
-
 let epicIdCounter = 0
 export const addEpicStub = () => {
+    console.log("add epic called, id to be used: "+epicIdCounter.toString());
     let newEpic = epicDataDefault;
     newEpic.epicId = "new_id_"+epicIdCounter.toString();
     newEpic.taskLists = [];
@@ -181,7 +178,7 @@ let idCounter = 2;
 export const createTaskListStub = (uuid) => {
     const newTaskList = {
         "taskListName": "string",
-        "id": idCounter,
+        "taskListId": idCounter,
         "tasks": []
     };
     idCounter++;

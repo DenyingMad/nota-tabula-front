@@ -1,34 +1,42 @@
 import React from "react";
-import {IconButton, Typography} from "@material-ui/core";
+import {Typography} from "@material-ui/core";
 import {useLeftContainerStyles} from "./LeftContainerStyles";
 import clsx from "clsx";
 import {EpicInfo} from "./epicInfo/EpicInfo";
 import {SharedWith} from "./sharedWith/SharedWith";
-import {Create} from "@material-ui/icons";
+import {Clear, Create, Done} from "@material-ui/icons";
+import EdiText from 'react-editext'
 
 export const LeftContainer = (props) => {
     const classes = useLeftContainerStyles();
+    const handlerRenameEpic = () => {
+
+    };
     return (
         <div className={clsx(classes.epicSideBar, classes.flexColumn)}>
-            <div className={classes.elementWithButton}>
-                <Typography
-                    variant="h5"
-                    align="center"
-                    >
-                    {props.epicDetails.epicName}
-                </Typography>
-                <IconButton
-                    aria-label="edit"
-                    className={classes.editButton}
-                    size="small"
-                    // onClick={}
-                >
-                    <Create fontSize="inherit"/>
-                </IconButton>
-            </div>
+            <Typography
+            variant="h5"
+            align="center">
+            <EdiText
+                value={props.epicDetails.epicName === null ? "name is null" : props.epicDetails.epicName}
+                type="text"
+                onSave={handlerRenameEpic}
+                editButtonClassName={classes.renameButton}
+                editButtonContent={<Create/>}
+                saveButtonContent={<Done/>}
+                saveButtonClassName={classes.renameButton}
+                cancelButtonContent={<Clear/>}
+                cancelButtonClassName={classes.renameButton}
+                hideIcons
+                showButtonsOnHover
+                cancelOnUnfocus
+                cancelOnEscape
+                submitOnEnter
+            />
+            </Typography>
             <Typography
                 variant="body1"
-                >
+            >
                 {props.epicDetails.epicDescription}
             </Typography>
             <EpicInfo

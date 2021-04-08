@@ -2,7 +2,7 @@ import React, {useContext, useState} from 'react'
 import {useFormik} from 'formik';
 import {LoginForm} from "./LoginView";
 import * as Yup from 'yup';
-import * as securityApi from "../../api/securityApi";
+import * as securityApi from "../../api/SecurityApi";
 import {AppContext} from "../../AppContext";
 
 const handleLogin = (history, location, context, setContext, setError) => (values) => {

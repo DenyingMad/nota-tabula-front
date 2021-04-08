@@ -4,7 +4,7 @@ import {LeftContainer} from "./leftContainer/LeftContainer";
 import {RightContainer} from "./rightContainer/RightContainer";
 import Card from "@material-ui/core/Card";
 import {useEpicStyles} from "./EpicStyles";
-import {createTaskList} from "../../api/epicApi";
+import {createTaskList} from "../../api/EpicApi";
 
 export const EpicView = (props) => {
     const classes = useEpicStyles();

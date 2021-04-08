@@ -4,7 +4,7 @@ import {RegisterView} from "./RegisterView";
 import * as Yup from 'yup';
 import {passwordValidation, usernameValidation} from "../../utils/credentialsValidation";
 import {AppContext} from "../../AppContext";
-import * as securityApi from "../../api/securityApi";
+import * as securityApi from "../../api/SecurityApi";
 
 const handleRegister = (history, context, setContext, setError) => (values) => {
     return securityApi.register(values)

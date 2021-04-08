@@ -15,7 +15,7 @@ const TabPanel = props => {
     const {children, value, index, classes, ...other} = props;
     return (
         <div
-            className={classes.fullWidth}
+            className={clsx(classes.fullWidth, classes.scrollY)}
             role="tabpanel"
             hidden={value !== index}
             id={`layoutTabPanel${index}`}
@@ -38,8 +38,6 @@ const TabProps = index => {
     };
 }
 
-// надо поменять цвета у панели выбора лайайута, изменить размер табов
-// добавть анимации переходов?
 export const RightContainer = (props) => {
     const taskLists = props.taskLists;
     const classes = useRightContainerStyles();
@@ -47,7 +45,6 @@ export const RightContainer = (props) => {
     const handlerChangeTab = (event, newSelected) => {
         setSelectedLayout(newSelected);
     };
-    console.log(props);
     return (
         <div className={clsx(classes.flexColumn, classes.epicRightSide)}>
             <Paper square className={classes.tabsBar}>
@@ -105,7 +102,8 @@ export const RightContainer = (props) => {
                     <Button
                         type="button"
                         className={clsx(
-                            classes.addItemButton
+                            classes.addItemButton,
+                            classes.fullWidth
                         )}
                         variant="contained"
                         startIcon={<Add/>}

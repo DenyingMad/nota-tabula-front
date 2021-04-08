@@ -1,5 +1,5 @@
 import makeStyles from "@material-ui/core/styles/makeStyles";
-import {globalStyles} from "../../../styles/globalStyles";
+import {globalStyles} from "../../../styles/GlobalStyles";
 
 const rightContainerStyles = theme => ({
     ...globalStyles(theme),
@@ -10,7 +10,7 @@ const rightContainerStyles = theme => ({
         alignItems: "center",
         padding: "0 1rem 0 1rem",
         gap: "0.25rem",
-        overflowY: "auto",
+        // overflowY: "auto",
     },
     tabsBar: {
         maxWidth: "30rem",

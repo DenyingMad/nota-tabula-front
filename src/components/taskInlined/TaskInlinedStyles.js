@@ -1,5 +1,5 @@
 import makeStyles from "@material-ui/core/styles/makeStyles";
-import {globalStyles} from "../../styles/globalStyles";
+import {globalStyles} from "../../styles/GlobalStyles";
 
 const taskInlinedStyles = theme => ({
     ...globalStyles(theme),

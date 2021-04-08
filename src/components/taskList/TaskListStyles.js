@@ -1,5 +1,5 @@
 import makeStyles from "@material-ui/core/styles/makeStyles";
-import {globalStyles} from "../../styles/globalStyles";
+import {globalStyles} from "../../styles/GlobalStyles";
 
 const taskListStyles = theme => ({
     ...globalStyles(theme),
@@ -9,8 +9,9 @@ const taskListStyles = theme => ({
     listRoot: {
         width: '100%',
         position: 'relative',
-        overflow: 'auto',
-        maxHeight: "11rem",
+    },
+    addTaskText: {
+        textAlign: "center",
     }
 });
 

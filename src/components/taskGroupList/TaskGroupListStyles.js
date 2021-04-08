@@ -1,5 +1,5 @@
 import makeStyles from "@material-ui/core/styles/makeStyles";
-import {globalStyles} from "../../styles/globalStyles";
+import {globalStyles} from "../../styles/GlobalStyles";
 
 // !!! Rename, too similar to task list styles
 const taskListsStyles = theme => ({
@@ -19,6 +19,9 @@ const taskListsStyles = theme => ({
         alignItems: "center",
         width: "100%",
     },
+    removeButton: {
+        display: "none",
+    }
 });
 
 export const useTaskListsStyles = makeStyles(taskListsStyles, {name: "TaskListsStyles"});
