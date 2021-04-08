@@ -49,10 +49,10 @@ const HarnessView = (props) => {
                 handleDrawerOpen={handleDrawerOpen}
                 handleDrawerClose={handleDrawerClose}
             />
-            <Container className={clsx(classes.mainContainer, {
-                [classes.contentShift]: open,
-            })}>
-                {children}
+            <Container className={clsx(classes.mainContainer, classes.content)}>
+                <div className={classes.toolbar}>
+                    {children}
+                </div>
             </Container>
         </div>
     );
@@ -75,23 +75,35 @@ const LeftToolBar = (props) => {
     const classes = useHarnessStyles();
     const theme = useTheme();
     return (
-        <div className={classes.rootAppbar}>
+        <div className={classes.rootDrawer}>
 
             <Drawer
-                className={classes.drawer}
-                classes={{paper: classes.drawerPaper}}
+                className={clsx(classes.drawer, {
+                    [classes.drawerOpen]: props.open,
+                    [classes.drawerClose]: !props.open,
+                })}
+                classes={{
+                    paper: clsx({
+                        [classes.drawerOpen]: props.open,
+                        [classes.drawerClose]: !props.open,
+                    }),
+                }}
                 variant="permanent"
                 open={props.open}
             >
-                <div className={classes.drawerHeader}>
+                <div className={classes.toolbar}>
                     <IconButton onClick={props.handleDrawerClose}>
-                        {theme.direction === 'ltr' ? <ChevronLeft/> : <ChevronRight/>}
+                        {theme.direction === 'rtl' ? <ChevronRight/> : <ChevronLeft/>}
                     </IconButton>
                 </div>
                 <Divider/>
                 <List>
                     {SECTIONS.map((section) => (
-                        <Link to={section.href} key={section.sectionName} className="leftToolbar-link">
+                        <Link
+                            to={section.href}
+                            key={section.sectionName}
+                            className="leftToolbar-link"
+                        >
                             <ListItem button classes={{root: classes.listItem}}>
                                 <ListItemIcon className="section-icon">
                                     <section.Icon/>
