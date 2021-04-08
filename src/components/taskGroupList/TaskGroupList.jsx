@@ -68,7 +68,7 @@ export const TaskGroupList = (props) => {
                                     open={Boolean(anchorEl)}
                                     onClose={handlerCrudActions}
                                 >
-                                    <MenuItem onClick={handlerCrudActions}>Rename</MenuItem>
+                                    {/*<MenuItem onClick={handlerCrudActions}>Rename</MenuItem>*/}
                                     <MenuItem onClick={handlerCrudActions}>Delete</MenuItem>
                                 </Menu>
                             </div>

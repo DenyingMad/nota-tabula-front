@@ -6,7 +6,7 @@ import {
     getEpicStub,
     getTaskStub
 } from "./EpicDataStubApi";
-import {getCommonHttpRequestProps, throwHttpErrors} from "../common";
+import {getCommonHttpRequestProps, getCommonJsonRequestProps, throwHttpErrors} from "../common";
 
 
 // Dummy calls
@@ -16,11 +16,11 @@ import {getCommonHttpRequestProps, throwHttpErrors} from "../common";
 //     })
 // }
 
-export const createTaskList = (uuid) => {
-    return new Promise((resolve, reject) => {
-        resolve(createTaskListStub(uuid));
-    })
-}
+// export const createTaskList = (uuid) => {
+//     return new Promise((resolve, reject) => {
+//         resolve(createTaskListStub(uuid));
+//     })
+// }
 
 // export const createTask = (uuid, taskListId) => {
 //     return new Promise((resolve, reject) => {
@@ -66,7 +66,8 @@ export const getAllEpics = () =>
 export const createTaskList =(uuid) =>
     fetch(`/api/rest/epic/${uuid}/task-list`, {
         method:"POST",
-        ...getCommonHttpRequestProps()
+        ...getCommonHttpRequestProps(),
+        body: "default name"
     })
         .then(error => throwHttpErrors(error))
         .then(response => response.json())
@@ -75,7 +76,7 @@ export const createTask = (uuid, taskListId, taskName) =>
     fetch(`/api/rest/epic/${uuid}/task-list/${taskListId}/task`, {
         method: "POST",
         ...getCommonHttpRequestProps(),
-        body: JSON.stringify(taskName)
+        body: taskName,
     })
         .then(error => throwHttpErrors(error))
         .then(response => response.json())

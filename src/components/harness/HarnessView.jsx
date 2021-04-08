@@ -3,11 +3,11 @@ import {Container, Divider, Drawer, List, ListItem, ListItemIcon, ListItemText, 
 import {Link, withRouter} from "react-router-dom";
 import DashboardIcon from '@material-ui/icons/Dashboard';
 import AssessmentIcon from '@material-ui/icons/Assessment';
-import {useCommonStyles} from "../../styles/GlobalStyles";
+import {useHarnessStyles} from "./HarnessStyles";
 
 const HarnessView = (props) => {
     const {children} = props;
-    const classes = useCommonStyles();
+    const classes = useHarnessStyles();
     return (
         <div className={classes.flexRow}>
             <LeftToolBar/>
@@ -17,31 +17,6 @@ const HarnessView = (props) => {
         </div>
     );
 };
-
-const drawerWidth = 220;
-
-const useStyles = makeStyles({
-    root: {
-        display: "flex"
-    },
-    drawer: {
-        width: drawerWidth,
-        flexShrink: 0,
-    },
-    drawerPaper: {
-        width: drawerWidth,
-        backgroundColor: "#061c34",
-        borderRight: "1px solid #777777",
-        padding: 15,
-    },
-    listItem: {
-        border: "1px solid #fff",
-        borderRadius: 15,
-        marginBottom: 5,
-        paddingTop: 15,
-        paddingBottom: 15,
-    }
-})
 
 const SECTIONS = [
     {
@@ -67,7 +42,7 @@ const SECTIONS = [
 ]
 
 const LeftToolBar = () => {
-    const classes = useStyles();
+    const classes = useHarnessStyles();
     return (
         <Drawer className={classes.drawer} classes={{paper: classes.drawerPaper}} variant="permanent" anchor="left">
             <div className="leftToolbar-header">Project cool name</div>

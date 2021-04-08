@@ -38,8 +38,8 @@ export const AddTaskForm = (props) => {
     )
 };
 
-const addTask = (newName, setTasks, epicId, taskListId, tasks) => {
-    createTask(epicId, taskListId)
+const addTask = (taskName, setTasks, epicId, taskListId, tasks) => {
+    createTask(epicId, taskListId, taskName)
         .then(r => {
             setTasks([...tasks, r])
         })
