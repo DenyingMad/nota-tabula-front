@@ -4,7 +4,7 @@ import {globalStyles} from "../../../styles/GlobalStyles";
 const rightContainerStyles = theme => ({
     ...globalStyles(theme),
     epicRightSide: {
-        maxWidth: "73.5rem",
+        // maxWidth: "73.5rem",
         width: "100%",
         // justifyContent: "center",
         alignItems: "center",

@@ -1,17 +1,67 @@
 import React from 'react';
-import {Container, Divider, Drawer, List, ListItem, ListItemIcon, ListItemText, makeStyles} from "@material-ui/core";
+import {
+    Container,
+    Divider,
+    Drawer,
+    List,
+    ListItem,
+    ListItemIcon,
+    ListItemText,
+    makeStyles,
+    useTheme
+} from "@material-ui/core";
 import {Link, withRouter} from "react-router-dom";
 import DashboardIcon from '@material-ui/icons/Dashboard';
 import AssessmentIcon from '@material-ui/icons/Assessment';
 import {useHarnessStyles} from "./HarnessStyles";
+import clsx from "clsx";
+import AppBar from "@material-ui/core/AppBar";
+import IconButton from "@material-ui/core/IconButton";
+import Toolbar from "@material-ui/core/Toolbar";
+import Typography from "@material-ui/core/Typography";
+import {ArrowBackIos, ChevronLeft, ChevronRight, Menu} from "@material-ui/icons";
 
 const HarnessView = (props) => {
     const {children} = props;
     const classes = useHarnessStyles();
+    const [open, setOpen] = React.useState(false);
+    const handleDrawerOpen = () => {
+        setOpen(true);
+    };
+    const handleDrawerClose = () => {
+        setOpen(false);
+    };
     return (
         <div className={classes.flexRow}>
-            <LeftToolBar/>
-            <Container className={classes.mainContainer}>
+            <AppBar
+                position="fixed"
+                className={clsx(classes.appBar, {
+                    [classes.appBarShift]: open,
+                })}
+            >
+                <Toolbar>
+                    <IconButton
+                        color="inherit"
+                        aria-label="open drawer"
+                        onClick={handleDrawerOpen}
+                        edge="start"
+                        className={clsx(classes.menuButton, open && classes.hide)}
+                    >
+                        <Menu/>
+                    </IconButton>
+                    <Typography variant="h5" noWrap>
+                        Nota Tabula
+                    </Typography>
+                </Toolbar>
+            </AppBar>
+            <LeftToolBar
+                open={open}
+                handleDrawerOpen={handleDrawerOpen}
+                handleDrawerClose={handleDrawerClose}
+            />
+            <Container className={clsx(classes.mainContainer, {
+                [classes.contentShift]: open,
+            })}>
                 {children}
             </Container>
         </div>
@@ -41,25 +91,38 @@ const SECTIONS = [
     },
 ]
 
-const LeftToolBar = () => {
+const LeftToolBar = (props) => {
     const classes = useHarnessStyles();
+    const theme = useTheme();
     return (
-        <Drawer className={classes.drawer} classes={{paper: classes.drawerPaper}} variant="permanent" anchor="left">
-            <div className="leftToolbar-header">Project cool name</div>
-            <Divider/>
-            <List>
-                {SECTIONS.map((section) => (
-                    <Link to={section.href} key={section.sectionName} className="leftToolbar-link">
-                        <ListItem button classes={{root: classes.listItem}}>
-                            <ListItemIcon className="section-icon">
-                                <section.Icon/>
-                            </ListItemIcon>
-                            <ListItemText primary={section.sectionName}/>
-                        </ListItem>
-                    </Link>
-                ))}
-            </List>
-        </Drawer>
+        <div className={classes.rootAppbar}>
+
+            <Drawer
+                className={classes.drawer}
+                classes={{paper: classes.drawerPaper}}
+                variant="permanent"
+                open={props.open}
+            >
+                <div className={classes.drawerHeader}>
+                    <IconButton onClick={props.handleDrawerClose}>
+                        {theme.direction === 'ltr' ? <ChevronLeft/> : <ChevronRight/>}
+                    </IconButton>
+                </div>
+                <Divider/>
+                <List>
+                    {SECTIONS.map((section) => (
+                        <Link to={section.href} key={section.sectionName} className="leftToolbar-link">
+                            <ListItem button classes={{root: classes.listItem}}>
+                                <ListItemIcon className="section-icon">
+                                    <section.Icon/>
+                                </ListItemIcon>
+                                <ListItemText primary={section.sectionName}/>
+                            </ListItem>
+                        </Link>
+                    ))}
+                </List>
+            </Drawer>
+        </div>
     );
 };
 
