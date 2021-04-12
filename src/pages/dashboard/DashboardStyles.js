@@ -3,9 +3,6 @@ import {globalStyles} from "../../styles/GlobalStyles";
 
 const dashboardStyles = theme => ({
     ...globalStyles(theme),
-    dashboardContainer: {
-        // maxWidth: "80rem",
-    },
     epicList: {
         maxHeight: "35rem",
         overflowY: "auto",

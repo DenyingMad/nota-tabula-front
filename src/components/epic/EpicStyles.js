@@ -7,7 +7,6 @@ const epicStyles = theme => ({
         alignSelf: "center",
     },
     epicContainer: {
-        // maxWidth: "74rem",
         width: "100%",
         maxHeight: "32rem",
         minHeight: "15rem",

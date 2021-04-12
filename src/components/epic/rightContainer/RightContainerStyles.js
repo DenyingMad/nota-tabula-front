@@ -4,13 +4,10 @@ import {globalStyles} from "../../../styles/GlobalStyles";
 const rightContainerStyles = theme => ({
     ...globalStyles(theme),
     epicRightSide: {
-        // maxWidth: "73.5rem",
         width: "100%",
-        // justifyContent: "center",
         alignItems: "center",
         padding: "0 1rem 0 1rem",
         gap: "0.25rem",
-        // overflowY: "auto",
     },
     tabsBar: {
         maxWidth: "30rem",

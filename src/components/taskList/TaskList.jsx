@@ -9,7 +9,6 @@ import {AddTaskForm} from "./AddTaskForm";
 export const TaskList = (props) => {
     const classes = useTaskListStyles();
     const [tasks, setTasks] = useState(props.tasks);
-
     return (
         <div className={clsx(classes.listRoot)}>
             <List>

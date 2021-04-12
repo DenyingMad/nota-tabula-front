@@ -7,15 +7,15 @@ import {useEpicStyles} from "./EpicStyles";
 import {createTaskList} from "../../api/EpicApi";
 
 export const EpicView = (props) => {
-    const classes = useEpicStyles();
     const [taskLists, setTaskLists] = useState(props.epicData.taskLists);
     const handlerAddTaskList = (epicId) => {
-        createTaskList(epicId)
+        createTaskList(epicId, "Default Name")
             .then(r => {
                 setTaskLists([...taskLists,r])
             })
             .catch(error => console.log(error));
     };
+    const classes = useEpicStyles();
     return (
         <Card className={clsx(classes.flexRow, classes.epicContainer)}>
             <LeftContainer

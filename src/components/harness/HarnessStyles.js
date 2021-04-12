@@ -4,15 +4,6 @@ import makeStyles from "@material-ui/core/styles/makeStyles";
 const drawerWidth = 220;
 const harnessStyles = theme => ({
     ...globalStyles(theme),
-    root: {
-        display: "flex"
-    },
-    drawerPaper: {
-        width: drawerWidth,
-        backgroundColor: "#ffffff",
-        borderRight: "1px solid #777777",
-        padding: 15,
-    },
     listItem: {
         border: "1px solid #fff",
         borderRadius: 15,
@@ -20,7 +11,6 @@ const harnessStyles = theme => ({
         paddingTop: 15,
         paddingBottom: 15,
     },
-    // copied
     rootDrawer: {
         display: 'flex',
     },
@@ -73,7 +63,6 @@ const harnessStyles = theme => ({
         alignItems: 'center',
         justifyContent: 'flex-end',
         padding: theme.spacing(0, 1),
-        // necessary for content to be below app bar
         ...theme.mixins.toolbar,
     },
     content: {

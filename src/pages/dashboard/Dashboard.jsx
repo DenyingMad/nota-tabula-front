@@ -12,20 +12,16 @@ import ListItem from "@material-ui/core/ListItem";
 export const Dashboard = (props) => {
     const classes = useDashboardStyles();
     const [epics, setEpics] = useState([]);
-    const handlerCreateEpic = () => {
-        createEpic()
-            .then(r => {
-                setEpics([...epics,r] );
-            })
-            .catch(error => console.log(error));
-    };
+    const handlerAddEpic = () => {
+        AddEpic(epics, setEpics);
+    }
     useEffect(() => {
         getAllEpics()
             .then(r => setEpics(r.data))
             .catch(error => console.log(error));
     },[]);
     return (
-        <div className={clsx(classes.flexColumn, classes.dashboardContainer, classes.fullWidth)}>
+        <div className={clsx(classes.flexColumn, classes.fullWidth)}>
             <List>
                 {epics.map((epic) => (
                     <ListItem
@@ -42,7 +38,7 @@ export const Dashboard = (props) => {
                 )}
                 variant="contained"
                 startIcon={<Add/>}
-                onClick={handlerCreateEpic}
+                onClick={handlerAddEpic}
             >
                 <Typography variant="body1">
                     Add Epic
@@ -50,4 +46,12 @@ export const Dashboard = (props) => {
             </Button>
         </div>
     )
+}
+
+const AddEpic = (epics, setEpics) => {
+    createEpic()
+        .then(r => {
+            setEpics([...epics,r] );
+        })
+        .catch(error => console.log(error));
 }

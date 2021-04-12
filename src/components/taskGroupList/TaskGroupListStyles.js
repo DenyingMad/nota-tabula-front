@@ -1,7 +1,6 @@
 import makeStyles from "@material-ui/core/styles/makeStyles";
 import {globalStyles} from "../../styles/GlobalStyles";
 
-// !!! Rename, too similar to task list styles
 const taskListsStyles = theme => ({
     ...globalStyles(theme),
     taskLists: {
