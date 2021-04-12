@@ -8,6 +8,7 @@ import {GrantChartTab} from "./TabCoomponents/GrantChartTab";
 
 export const RightContainerView = (props) => {
     const classes = useRightContainerStyles();
+
     return (
         <div className={clsx(classes.flexColumn, classes.epicRightSide)}>
             <TabSwitcher
@@ -18,9 +19,9 @@ export const RightContainerView = (props) => {
                 selectedLayout={props.selectedLayout}
                 index={0}
                 classes={classes}
-                handlerAddTaskList={props.handlerAddTaskList}
                 epicId={props.epicId}
                 taskLists={props.taskLists}
+                setTaskLists={props.setTaskLists}
             />
             <KanbanTab
                 selectedLayout={props.selectedLayout}
@@ -33,5 +34,5 @@ export const RightContainerView = (props) => {
                 classes={classes}
             />
         </div>
-    )
-}
+    );
+};
