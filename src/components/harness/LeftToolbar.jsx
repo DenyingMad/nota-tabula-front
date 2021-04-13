@@ -9,6 +9,7 @@ import React from "react";
 export const LeftToolBar = (props) => {
     const classes = useHarnessStyles();
     const theme = useTheme();
+
     return (
         <div className={classes.rootDrawer}>
             <Drawer

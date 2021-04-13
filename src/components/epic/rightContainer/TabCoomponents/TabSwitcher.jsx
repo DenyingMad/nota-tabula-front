@@ -10,6 +10,7 @@ import {useRightContainerStyles} from "../RightContainerStyles";
 
 export const TabSwitcher = (props) => {
     const classes = useRightContainerStyles();
+
     return (
         <Paper square className={classes.tabsBar}>
             <Tabs
@@ -55,5 +56,5 @@ export const TabSwitcher = (props) => {
                     {...TabProps(2)} />
             </Tabs>
         </Paper>
-    )
+    );
 };

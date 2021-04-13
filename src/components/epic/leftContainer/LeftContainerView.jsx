@@ -9,13 +9,14 @@ import EdiText from 'react-editext'
 
 export const LeftContainerView = (props) => {
     const classes = useLeftContainerStyles();
+
     return (
-        <div className={clsx(classes.epicSideBar, classes.flexColumn)}>
+        <div className={clsx(classes.epicSideBar, classes.flexColumn, classes.fullWidth)}>
             <Typography
                 variant="h5"
                 align="center">
                 <EdiText
-                    value={props.epicDetails.epicName === null ? "name is null" : props.epicDetails.epicName}
+                    value={props.epicDetails.epicName === null ? "Epic name not found" : props.epicDetails.epicName}
                     type="text"
                     onSave={props.handlerRenameEpic}
                     editButtonClassName={classes.renameButton}
@@ -44,5 +45,5 @@ export const LeftContainerView = (props) => {
                 style={classes.flexForceBottom}
             />
         </div>
-    )
-}
+    );
+};

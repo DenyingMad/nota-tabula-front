@@ -20,21 +20,21 @@ export const globalStyles = theme => ({
         marginTop: '1rem',
         marginBottom: '0.25rem',
     },
-    submitButton: {
-        margin: '0.25rem 0 1rem 0',
-        textTransform: 'none',
+    buttonTealColor: {
         backgroundColor: '#3cc9a7',
         '&:hover': {
             backgroundColor: '#46bea1',
         },
     },
-    addItemButton: {
-        margin: '0.25rem 0 1rem 0',
-        textTransform: 'none',
+    buttonLightBlueColor: {
         backgroundColor: '#b3e5fc',
         '&:hover': {
             backgroundColor: '#81d4fa',
         },
+    },
+    addItemButton: {
+        margin: '0.25rem 0 1rem 0',
+        textTransform: 'none',
     },
     fullWidth: {
         width: "100%",
@@ -55,7 +55,7 @@ export const globalStyles = theme => ({
     scrollY: {
         overflowY: "auto",
     },
-    removeElement: {
+    hidden: {
         display: "none",
     }
 });

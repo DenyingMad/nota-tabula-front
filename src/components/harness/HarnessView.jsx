@@ -9,28 +9,32 @@ import {LeftToolBar} from "./LeftToolbar";
 import {HarnessAppBar} from "./HarnessAppBar";
 
 const HarnessView = (props) => {
-    const {children} = props;
     const classes = useHarnessStyles();
+
+    const {children} = props;
+
     const [open, setOpen] = React.useState(false);
+
     const handleDrawerOpen = () => {
         setOpen(true);
     };
     const handleDrawerClose = () => {
         setOpen(false);
     };
+
     return (
         <div className={classes.flexRow}>
             <HarnessAppBar
                 handleDrawerOpen={handleDrawerOpen}
                 open={open}
-                />
+            />
             <LeftToolBar
                 open={open}
                 handleDrawerOpen={handleDrawerOpen}
                 handleDrawerClose={handleDrawerClose}
                 sections={SECTIONS}
             />
-            <Container className={clsx(classes.mainContainer, classes.content)}>
+            <Container maxWidth={false} className={clsx(classes.mainContainer, classes.content)}>
                 <div className={classes.toolbar}>
                     {children}
                 </div>
@@ -50,6 +54,6 @@ const SECTIONS = [
         Icon: AssessmentIcon,
         href: '/reports',
     },
-]
+];
 
 export default withRouter(HarnessView);

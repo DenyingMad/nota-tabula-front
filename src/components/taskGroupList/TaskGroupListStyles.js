@@ -3,9 +3,6 @@ import {globalStyles} from "../../styles/GlobalStyles";
 
 const taskListsStyles = theme => ({
     ...globalStyles(theme),
-    taskLists: {
-        width: "100%",
-    },
     listShortInfo: {
         marginLeft: "2rem",
         color: "#D3D3D3"
@@ -16,11 +13,7 @@ const taskListsStyles = theme => ({
     summaryItems: {
         gap: "0.25rem",
         alignItems: "center",
-        width: "100%",
     },
-    removeButton: {
-        display: "none",
-    }
 });
 
 export const useTaskListsStyles = makeStyles(taskListsStyles, {name: "TaskListsStyles"});

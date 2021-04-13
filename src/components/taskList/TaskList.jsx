@@ -8,9 +8,11 @@ import {AddTaskForm} from "./AddTaskForm";
 
 export const TaskList = (props) => {
     const classes = useTaskListStyles();
+
     const [tasks, setTasks] = useState(props.tasks);
+
     return (
-        <div className={clsx(classes.listRoot)}>
+        <div className={clsx(classes.listRoot, classes.fullWidth)}>
             <List>
                 {tasks.map((task) => (
                     <ListItem key={task.taskId}>
@@ -34,5 +36,5 @@ export const TaskList = (props) => {
                 taskListId={props.taskListId}
             />
         </div>
-    )
-}
+    );
+};

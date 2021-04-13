@@ -8,6 +8,7 @@ import AuthRoute from "../security/AuthRoute";
 import {Dashboard} from "../pages/dashboard/Dashboard";
 
 const AppView = () => {
+
     return (
         <Switch>
             <Route path="/login" component={Login} exact/>

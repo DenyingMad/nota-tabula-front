@@ -5,6 +5,7 @@ import {useTaskInlinedStyles} from "../TaskInlinedStyles";
 
 export const PrioritySelect = (props) => {
     const classes = useTaskInlinedStyles();
+
     return (
         <FormControl variant="outlined" className={classes.margin}>
             <Select
@@ -19,5 +20,5 @@ export const PrioritySelect = (props) => {
                 <option value={3}>High</option>
             </Select>
         </FormControl>
-    )
-}
+    );
+};

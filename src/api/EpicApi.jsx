@@ -16,10 +16,9 @@ export const getAllEpics = () =>
         .then(error => throwHttpErrors(error))
         .then(response => response.json())
 
-
-export const createTaskList =(uuid, taskListName) =>
+export const createTaskList = (uuid, taskListName) =>
     fetch(`/api/rest/epic/${uuid}/task-list`, {
-        method:"POST",
+        method: "POST",
         ...getCommonHttpRequestProps(),
         body: taskListName
     })
@@ -39,7 +38,7 @@ export const getEpicByUuid = (uuid) =>
     fetch(`/api/rest/epic/${uuid}`, {
         method: "GET",
         ...getCommonHttpRequestProps()
-})
+    })
         .then(error => throwHttpErrors(error))
         .then(response => response.json())
 

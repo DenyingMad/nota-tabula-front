@@ -3,22 +3,25 @@ import {TaskInlinedView} from "./TaskInlinedView";
 
 export const TaskInlined = (props) => {
     const [btnCheck, setBtnCheck] = useState(props.taskCompleted);
-    const [anchorEl, setAnchorEl] = React.useState(null);
+    const [anchorEl, setAnchorEl] = useState(null);
+    const [selectedPriority, setSelectedPriority] = useState(props.taskPriority);
+
     const handlerCrudMenu = (event) => {
         setAnchorEl(event.currentTarget);
     };
     const handlerCrudAction = () => {
         setAnchorEl(null);
     };
+
     const handlerCheckBox = (event) => {
         setBtnCheck(!btnCheck);
     }
-    const [selectedPriority, setSelectedPriority] = React.useState(props.taskPriority);
     const handlerPriorityChange = (event) => {
         setSelectedPriority(event.target.value);
     };
     const handlerRenameTask = () => {
     };
+
     return (
         <TaskInlinedView
             epicId={props.epicId}
@@ -38,5 +41,5 @@ export const TaskInlined = (props) => {
             handlerPriorityChange={handlerPriorityChange}
             handlerCrudMenu={handlerCrudMenu}
         />
-    )
-}
+    );
+};

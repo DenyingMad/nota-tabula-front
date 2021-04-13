@@ -3,12 +3,14 @@ import {TaskGroupListView} from "./TaskGroupListView";
 
 export const TaskGroupList = (props) => {
     const [anchorEl, setAnchorEl] = React.useState(null);
+
     const handlerCrudMenu = (event) => {
         setAnchorEl(event.currentTarget);
     };
     const handlerCrudActions = () => {
         setAnchorEl(null);
     };
+
     return (
         <TaskGroupListView
             anchorEl={anchorEl}
@@ -18,5 +20,5 @@ export const TaskGroupList = (props) => {
             epicId={props.epicId}
             taskLists={props.taskLists}
         />
-    )
-}
+    );
+};

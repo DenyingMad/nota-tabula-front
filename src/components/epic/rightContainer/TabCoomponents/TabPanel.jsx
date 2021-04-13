@@ -3,6 +3,7 @@ import React from "react";
 
 export const TabPanel = props => {
     const {children, value, index, classes, ...other} = props;
+
     return (
         <div
             className={clsx(classes.fullWidth, classes.scrollY)}
@@ -19,11 +20,11 @@ export const TabPanel = props => {
             )}
         </div>
     );
-}
+};
 
 export const TabProps = index => {
     return {
         id: `layoutTab${index}`,
         'aria-controls': `layoutTabPanel${index}`,
     };
-}
+};

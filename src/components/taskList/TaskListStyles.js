@@ -7,7 +7,6 @@ const taskListStyles = theme => ({
         marginLeft: "1rem",
     },
     listRoot: {
-        width: '100%',
         position: 'relative',
     },
     addTaskText: {

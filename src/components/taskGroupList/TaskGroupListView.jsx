@@ -14,6 +14,7 @@ import {TaskList} from "../taskList/TaskList";
 
 export const TaskGroupListView = (props) => {
     const classes = useTaskListsStyles();
+
     const showTaskLists = props.taskLists.map((taskList) => (
         <Accordion
             key={taskList.taskListId}
@@ -24,7 +25,7 @@ export const TaskGroupListView = (props) => {
                 aria-controls={taskList.taskListId + "content"}
                 id={taskList.taskListId + "header"}
             >
-                <div className={clsx(classes.flexRow, classes.summaryItems)}>
+                <div className={clsx(classes.flexRow, classes.summaryItems, classes.fullWidth)}>
                     <Typography>
                         {taskList.taskListName}
                     </Typography>
@@ -65,9 +66,10 @@ export const TaskGroupListView = (props) => {
             </AccordionDetails>
         </Accordion>
     ));
+
     return (
         <div className={classes.taskLists}>
             {showTaskLists}
         </div>
-    )
-}
+    );
+};

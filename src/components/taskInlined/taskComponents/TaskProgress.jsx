@@ -6,6 +6,7 @@ import LinearProgress from "@material-ui/core/LinearProgress";
 
 export const TaskProgress = (props) => {
     const classes = useTaskInlinedStyles();
+
     return (
         <div className={clsx(
             classes.flexColumn,
@@ -28,5 +29,5 @@ export const TaskProgress = (props) => {
                 }}
             />
         </div>
-    )
-}
+    );
+};

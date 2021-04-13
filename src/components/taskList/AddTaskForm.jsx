@@ -6,6 +6,7 @@ import {useTaskListStyles} from "./TaskListStyles";
 
 export const AddTaskForm = (props) => {
     const classes = useTaskListStyles();
+
     const formik = useFormik({
         initialValues: {
             task: ''
@@ -15,9 +16,11 @@ export const AddTaskForm = (props) => {
             resetForm({task: ''})
         }
     });
+
     const handleAddTask = taskName => {
         addTask(taskName, props.setTasks, props.epicId, props.taskListId, props.tasks);
     };
+
     return (
         <form onSubmit={formik.handleSubmit}>
             <OutlinedInput
@@ -29,9 +32,9 @@ export const AddTaskForm = (props) => {
                 onChange={formik.handleChange}
                 value={formik.values.task}
             />
-            <button type="submit" className={classes.removeElement}></button>
+            <button type="submit" className={classes.hidden}></button>
         </form>
-    )
+    );
 };
 
 const addTask = (taskName, setTasks, epicId, taskListId, tasks) => {

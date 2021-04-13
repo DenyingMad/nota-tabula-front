@@ -7,7 +7,6 @@ const taskInlinedStyles = theme => ({
         justifyContent: "start",
         alignItems: "center",
         padding: "0.5rem 0.5rem 0.5rem 0.5rem",
-        width: "100%",
         gap: "0.5rem",
     },
     prioritySelect: {

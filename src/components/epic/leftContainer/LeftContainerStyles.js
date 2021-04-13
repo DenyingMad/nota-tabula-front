@@ -5,7 +5,6 @@ const leftContainerStyles = theme => ({
     ...globalStyles(theme),
     epicSideBar: {
         maxWidth: "19rem",
-        width: "100%",
         padding: "2rem 1.25rem 2rem 1.25rem",
         borderRight: "1px solid blue",
         gap: "0.5rem",

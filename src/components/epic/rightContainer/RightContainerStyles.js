@@ -4,7 +4,6 @@ import {globalStyles} from "../../../styles/GlobalStyles";
 const rightContainerStyles = theme => ({
     ...globalStyles(theme),
     epicRightSide: {
-        width: "100%",
         alignItems: "center",
         padding: "0 1rem 0 1rem",
         gap: "0.25rem",

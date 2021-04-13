@@ -9,27 +9,28 @@ import {useHarnessStyles} from "./HarnessStyles";
 
 export const HarnessAppBar = (props) => {
     const classes = useHarnessStyles();
+
     return (
-    <AppBar
-        position="fixed"
-        className={clsx(classes.appBar, {
-            [classes.appBarShift]: props.open,
-        })}
-    >
-        <Toolbar>
-            <IconButton
-                color="inherit"
-                aria-label="open drawer"
-                onClick={props.handleDrawerOpen}
-                edge="start"
-                className={clsx(classes.menuButton, props.open && classes.hide)}
-            >
-                <Menu/>
-            </IconButton>
-            <Typography variant="h5" noWrap>
-                Nota Tabula
-            </Typography>
-        </Toolbar>
-    </AppBar>
-    )
-}
+        <AppBar
+            position="fixed"
+            className={clsx(classes.appBar, {
+                [classes.appBarShift]: props.open,
+            })}
+        >
+            <Toolbar>
+                <IconButton
+                    color="inherit"
+                    aria-label="open drawer"
+                    onClick={props.handleDrawerOpen}
+                    edge="start"
+                    className={clsx(classes.menuButton, props.open && classes.hide)}
+                >
+                    <Menu/>
+                </IconButton>
+                <Typography variant="h5" noWrap>
+                    Nota Tabula
+                </Typography>
+            </Toolbar>
+        </AppBar>
+    );
+};

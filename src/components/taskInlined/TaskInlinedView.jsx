@@ -16,6 +16,7 @@ import {useTaskInlinedStyles} from "./TaskInlinedStyles";
 
 export const TaskInlinedView = (props) => {
     const classes = useTaskInlinedStyles();
+
     return (
         <Card className={clsx(classes.flexRow, classes.taskItem, classes.fullWidth)}>
             <Checkbox
@@ -70,5 +71,5 @@ export const TaskInlinedView = (props) => {
                 <MenuItem onClick={props.handlerCrudAction}>Delete</MenuItem>
             </Menu>
         </Card>
-    )
-}
+    );
+};
