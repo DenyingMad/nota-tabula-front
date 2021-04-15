@@ -35,6 +35,7 @@ export const TaskInlined = (props) => {
             selectedPriority={selectedPriority}
             progress={50}
             anchorEl={anchorEl}
+            setAnchorEl={setAnchorEl}
             handlerCrudAction={handlerCrudAction}
             handlerCheckBox={handlerCheckBox}
             handlerRenameTask={handlerRenameTask}

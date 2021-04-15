@@ -50,7 +50,10 @@ export const TaskGroupListView = (props) => {
                                 >
                                     <MenuItem onClick={props.handlerCrudActions}>Rename</MenuItem>
                                     <MenuItem onClick={
-                                        (e) => props.handlerDeleteTaskList(taskList.taskListId, e)
+                                        (e) => {
+                                            props.setAnchorEl(null);
+                                            props.handlerDeleteTaskList(props.epicId, taskList.taskListId, e)
+                                        }
                                     }>Delete</MenuItem>
                                 </Menu>
                             </div>

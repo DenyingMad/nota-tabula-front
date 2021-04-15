@@ -17,11 +17,10 @@ export const TaskGroupTab = (props) => {
             })
             .catch(error => console.log(error));
     };
-    const handlerDeleteTaskList = (taskListId) => {
-        deleteTaskList(taskListId)
-            .then(r => {
-                props.setTaskLists(props.taskLists.filter(item => item.taskListId !== taskListId))
-            })
+    const handlerDeleteTaskList = (epicId, taskListId) => {
+        props.setTaskLists(props.taskLists.filter(item => item.taskListId !== taskListId))
+        deleteTaskList(epicId, taskListId)
+            .then(r => r)
             .catch(error => console.log(error))
     }
 

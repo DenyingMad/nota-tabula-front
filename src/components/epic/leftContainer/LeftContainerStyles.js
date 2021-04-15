@@ -19,6 +19,10 @@ const leftContainerStyles = theme => ({
             backgroundColor: '#9e9e9e',
         },
     },
+    deleteButtonOverride: {
+        margin: "0",
+        textTransform: "none",
+    },
 });
 
 export const useLeftContainerStyles = makeStyles(leftContainerStyles, {name: "EpicLeftSideStyles"});

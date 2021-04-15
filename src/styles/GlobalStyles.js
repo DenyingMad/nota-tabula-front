@@ -32,6 +32,12 @@ export const globalStyles = theme => ({
             backgroundColor: '#81d4fa',
         },
     },
+    buttonRedColor: {
+        backgroundColor: '#fcbeb3',
+        '&:hover': {
+            backgroundColor: '#cd614a',
+        },
+    },
     addItemButton: {
         margin: '0.25rem 0 1rem 0',
         textTransform: 'none',

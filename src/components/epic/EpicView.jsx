@@ -15,6 +15,7 @@ export const EpicView = (props) => {
             <LeftContainer
                 epicId={props.epicData.epicId}
                 epicDetails={props.epicData.details}
+                handlerDeleteEpic={props.handlerDeleteEpic}
             />
             <RightContainer
                 epicId={props.epicData.epicId}
