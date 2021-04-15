@@ -20,7 +20,7 @@ export const LeftContainerView = (props) => {
                 variant="h5"
                 align="center">
                 <EdiText
-                    value={props.epicDetails.epicName === null ? "Epic name not found" : props.epicDetails.epicName}
+                    value={props.epicDetails.epicName === null ? "New Epic" : props.epicDetails.epicName}
                     type="text"
                     onSave={props.handlerRenameEpic}
                     editButtonClassName={classes.renameButton}
