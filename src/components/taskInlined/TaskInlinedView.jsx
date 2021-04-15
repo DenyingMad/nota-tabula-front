@@ -68,7 +68,7 @@ export const TaskInlinedView = (props) => {
                 open={Boolean(props.anchorEl)}
                 onClose={props.handlerCrudAction}
             >
-                <MenuItem onClick={(e) => props.handlerDeleteTask(props.taskId, e)}>Delete</MenuItem>
+                <MenuItem onClick={props.handlerCrudAction}>Delete</MenuItem>
             </Menu>
         </Card>
     );

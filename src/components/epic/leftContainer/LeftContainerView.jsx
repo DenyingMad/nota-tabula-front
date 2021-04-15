@@ -11,10 +11,7 @@ export const LeftContainerView = (props) => {
     const classes = useLeftContainerStyles();
 
     return (
-        <div className={clsx(
-            classes.epicSideBar,
-            classes.flexColumn
-        )}>
+        <div className={clsx(classes.epicSideBar, classes.flexColumn, classes.fullWidth)}>
             <Typography
                 variant="h5"
                 align="center">

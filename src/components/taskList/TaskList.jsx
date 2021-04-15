@@ -5,19 +5,11 @@ import ListItem from "@material-ui/core/ListItem";
 import clsx from "clsx";
 import {TaskInlined} from "../taskInlined/TaskInlined";
 import {AddTaskForm} from "./AddTaskForm";
-import {deleteTask} from "../../api/EpicApi";
 
 export const TaskList = (props) => {
     const classes = useTaskListStyles();
 
     const [tasks, setTasks] = useState(props.tasks);
-    const handlerDeleteTask = (taskId) => {
-        deleteTask(taskId)
-            .then(r => {
-                setTasks(tasks.filter(item => item.taskId !== taskId))
-            })
-            .catch(error => console.log(error))
-    };
 
     return (
         <div className={clsx(classes.listRoot, classes.fullWidth)}>
@@ -33,7 +25,6 @@ export const TaskList = (props) => {
                             taskAssigned={task.assigned}
                             taskPriority={task.priority}
                             taskId={task.taskId}
-                            handlerDeleteTask={handlerDeleteTask}
                         />
                     </ListItem>
                 ))}

@@ -49,15 +49,3 @@ export const getTaskById = (uuid, id) =>
     })
         .then(error => throwHttpErrors(error))
         .then(response => response.json())
-
-export const deleteTask = (taskId) => {
-    return new Promise((resolve, reject) => {
-        resolve(console.log("deleting task: "+taskId));
-    })
-}
-
-export const deleteTaskList = (taskListId) => {
-    return new Promise((resolve, reject) => {
-        resolve(console.log("deleting task list: " + taskListId))
-    })
-}

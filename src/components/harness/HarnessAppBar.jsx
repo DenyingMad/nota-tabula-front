@@ -23,7 +23,7 @@ export const HarnessAppBar = (props) => {
                     aria-label="open drawer"
                     onClick={props.handleDrawerOpen}
                     edge="start"
-                    className={clsx(classes.menuButton, props.open && classes.hidden)}
+                    className={clsx(classes.menuButton, props.open && classes.hide)}
                 >
                     <Menu/>
                 </IconButton>

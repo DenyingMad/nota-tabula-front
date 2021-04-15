@@ -32,6 +32,9 @@ const harnessStyles = theme => ({
     menuButton: {
         marginRight: 36,
     },
+    hide: {
+        display: 'none',
+    },
     drawer: {
         width: drawerWidth,
         flexShrink: 0,
@@ -64,7 +67,7 @@ const harnessStyles = theme => ({
     },
     content: {
         flexGrow: 1,
-        padding: theme.spacing(5),
+        padding: theme.spacing(3),
     },
 });
 

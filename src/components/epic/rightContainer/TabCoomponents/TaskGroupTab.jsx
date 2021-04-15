@@ -5,7 +5,7 @@ import clsx from "clsx";
 import {Add} from "@material-ui/icons";
 import {Typography} from "@material-ui/core";
 import {TabPanel} from "./TabPanel";
-import {createTaskList, deleteTaskList} from "../../../../api/EpicApi";
+import {createTaskList} from "../../../../api/EpicApi";
 
 export const TaskGroupTab = (props) => {
     const classes = props.classes;
@@ -17,13 +17,6 @@ export const TaskGroupTab = (props) => {
             })
             .catch(error => console.log(error));
     };
-    const handlerDeleteTaskList = (taskListId) => {
-        deleteTaskList(taskListId)
-            .then(r => {
-                props.setTaskLists(props.taskLists.filter(item => item.taskListId !== taskListId))
-            })
-            .catch(error => console.log(error))
-    }
 
     return (
         <TabPanel value={props.selectedLayout} index={props.index} classes={props.classes}>
@@ -31,7 +24,6 @@ export const TaskGroupTab = (props) => {
                 <TaskGroupList
                     epicId={props.epicId}
                     taskLists={props.taskLists}
-                    handlerDeleteTaskList={handlerDeleteTaskList}
                 />
                 <Button
                     type="button"

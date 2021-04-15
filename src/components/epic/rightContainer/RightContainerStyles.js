@@ -7,9 +7,6 @@ const rightContainerStyles = theme => ({
         alignItems: "center",
         padding: "0 1rem 0 1rem",
         gap: "0.25rem",
-        flexGrow: "5",
-        flexShrink: "1",
-        flexBasis: "40rem",
     },
     tabsBar: {
         maxWidth: "30rem",
@@ -24,7 +21,7 @@ const rightContainerStyles = theme => ({
     iconLabel: {
         alignItems: "center",
         gap: "0.25rem",
-    },
+    }
 });
 
 export const useRightContainerStyles = makeStyles(rightContainerStyles, {name: "EpicRightSideStyles"});
