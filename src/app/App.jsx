@@ -3,7 +3,6 @@ import AppView from "./AppView";
 import {withRouter} from "react-router-dom";
 
 const App = () => {
-
     return (
         <AppView/>
     );

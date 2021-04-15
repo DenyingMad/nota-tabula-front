@@ -10,7 +10,7 @@ import {createTaskList, deleteTaskList} from "../../../../api/EpicApi";
 export const TaskGroupTab = (props) => {
     const classes = props.classes;
 
-    const handlerAddTaskList = (epicId) => {
+    const handleAddTaskList = (epicId) => {
         createTaskList(epicId, "Default Name")
             .then(r => {
                 props.setTaskLists([...props.taskLists, r])
@@ -42,7 +42,7 @@ export const TaskGroupTab = (props) => {
                     )}
                     variant="contained"
                     startIcon={<Add/>}
-                    onClick={() => handlerAddTaskList(props.epicId)}
+                    onClick={() => handleAddTaskList(props.epicId)}
                 >
                     <Typography variant="body1">
                         Add Task List

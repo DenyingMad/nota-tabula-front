@@ -4,17 +4,17 @@ import {RightContainerView} from "./RightContainerView";
 export const RightContainer = (props) => {
     const [selectedLayout, setSelectedLayout] = useState(0);
 
-    const handlerChangeTab = (event, newSelected) => {
+    const handleChangeTab = (event, newSelected) => {
         setSelectedLayout(newSelected);
     };
 
     return (
         <RightContainerView
             selectedLayout={selectedLayout}
-            handlerChangeTab={handlerChangeTab}
+            handlerChangeTab={handleChangeTab}
             taskLists={props.taskLists}
-            epicId={props.epicId}
             setTaskLists={props.setTaskLists}
+            epicId={props.epicId}
         />
     );
 };
