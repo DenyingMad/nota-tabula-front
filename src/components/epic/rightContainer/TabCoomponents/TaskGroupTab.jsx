@@ -5,17 +5,23 @@ import clsx from "clsx";
 import {Add} from "@material-ui/icons";
 import {Typography} from "@material-ui/core";
 import {TabPanel} from "./TabPanel";
-import {createTaskList} from "../../../../api/EpicApi";
+import {createTaskList, deleteTaskList} from "../../../../api/EpicApi";
 
 export const TaskGroupTab = (props) => {
     const classes = props.classes;
 
-    const handleAddTaskList = (epicId) => {
+    const handlerAddTaskList = (epicId) => {
         createTaskList(epicId, "Default Name")
             .then(r => {
                 props.setTaskLists([...props.taskLists, r])
             })
             .catch(error => console.log(error));
+    };
+    const handlerDeleteTaskList = (epicId, taskListId) => {
+        props.setTaskLists(props.taskLists.filter(item => item.taskListId !== taskListId));
+        deleteTaskList(epicId, taskListId)
+            .then(r => r)
+            .catch(error => console.log(error))
     };
 
     return (
@@ -24,6 +30,7 @@ export const TaskGroupTab = (props) => {
                 <TaskGroupList
                     epicId={props.epicId}
                     taskLists={props.taskLists}
+                    handlerDeleteTaskList={handlerDeleteTaskList}
                 />
                 <Button
                     type="button"
@@ -34,7 +41,7 @@ export const TaskGroupTab = (props) => {
                     )}
                     variant="contained"
                     startIcon={<Add/>}
-                    onClick={() => handleAddTaskList(props.epicId)}
+                    onClick={() => handlerAddTaskList(props.epicId)}
                 >
                     <Typography variant="body1">
                         Add Task List

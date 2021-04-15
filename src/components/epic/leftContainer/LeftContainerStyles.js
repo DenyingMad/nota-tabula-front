@@ -4,22 +4,24 @@ import {globalStyles} from "../../../styles/GlobalStyles";
 const leftContainerStyles = theme => ({
     ...globalStyles(theme),
     epicSideBar: {
-        maxWidth: "19rem",
+        maxWidth: "12rem",
+        minWidth: "6rem",
         padding: "2rem 1.25rem 2rem 1.25rem",
         borderRight: "1px solid blue",
         gap: "0.5rem",
-    },
-    elementWithButton: {
-        display: 'flex',
-        alignItems: 'center',
-        flexWrap: 'wrap',
-        gap: "0.5rem"
+        flexGrow: "1",
+        flexShrink: "5",
+        flexBasis: "19rem",
     },
     editButton: {
         backgroundColor: '#bdbdbd',
         '&:hover': {
             backgroundColor: '#9e9e9e',
         },
+    },
+    deleteButtonOverride: {
+        margin: "0",
+        textTransform: "none",
     },
 });
 

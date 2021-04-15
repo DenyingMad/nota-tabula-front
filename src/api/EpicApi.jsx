@@ -49,3 +49,24 @@ export const getTaskById = (uuid, id) =>
     })
         .then(error => throwHttpErrors(error))
         .then(response => response.json())
+
+export const deleteTask = (epicId, taskListId, taskId) =>
+    fetch(`/api/rest/epic/${epicId}/task-list/${taskListId}/task/${taskId}`, {
+        method: "DELETE",
+        ...getCommonHttpRequestProps()
+    })
+        .then(error => throwHttpErrors(error))
+
+export const deleteTaskList = (epicId, taskListId) =>
+    fetch(`/api/rest/epic/${epicId}/task-list/${taskListId}`, {
+        method: "DELETE",
+        ...getCommonHttpRequestProps()
+    })
+        .then(error => throwHttpErrors(error))
+
+export const deleteEpic = (epicID) =>
+    fetch(`/api/rest/epic/${epicID}`, {
+        method: "DELETE",
+        ...getCommonHttpRequestProps()
+    })
+        .then(error => throwHttpErrors(error))

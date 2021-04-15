@@ -34,8 +34,8 @@ const HarnessView = (props) => {
                 handleDrawerClose={handleDrawerClose}
                 sections={SECTIONS}
             />
-            <Container maxWidth={false} className={clsx(classes.mainContainer, classes.content)}>
-                <div className={classes.toolbar}>
+            <Container maxWidth={false} className={clsx(classes.content)}>
+                <div className={clsx(classes.toolbar, classes.mainContainer)}>
                     {children}
                 </div>
             </Container>

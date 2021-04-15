@@ -19,6 +19,7 @@ export const TaskGroupList = (props) => {
             setAnchorEl={setAnchorEl}
             epicId={props.epicId}
             taskLists={props.taskLists}
+            handlerDeleteTaskList={props.handlerDeleteTaskList}
         />
     );
 };

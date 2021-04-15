@@ -4,14 +4,18 @@ import {useLeftContainerStyles} from "./LeftContainerStyles";
 import clsx from "clsx";
 import {EpicInfo} from "./epicInfo/EpicInfo";
 import {SharedWith} from "./sharedWith/SharedWith";
-import {Clear, Create, Done} from "@material-ui/icons";
+import {Clear, Create, DeleteForever, Done} from "@material-ui/icons";
 import EdiText from 'react-editext'
+import Button from "@material-ui/core/Button";
 
 export const LeftContainerView = (props) => {
     const classes = useLeftContainerStyles();
 
     return (
-        <div className={clsx(classes.epicSideBar, classes.flexColumn, classes.fullWidth)}>
+        <div className={clsx(
+            classes.epicSideBar,
+            classes.flexColumn
+        )}>
             <Typography
                 variant="h5"
                 align="center">
@@ -32,9 +36,7 @@ export const LeftContainerView = (props) => {
                     submitOnEnter
                 />
             </Typography>
-            <Typography
-                variant="body1"
-            >
+            <Typography variant="body1">
                 {props.epicDetails.epicDescription}
             </Typography>
             <EpicInfo
@@ -44,6 +46,22 @@ export const LeftContainerView = (props) => {
             <SharedWith
                 style={classes.flexForceBottom}
             />
+            <Button
+                type="button"
+                className={clsx(
+                    classes.deleteButtonOverride,
+                    classes.fullWidth,
+                    classes.buttonRedColor,
+                    classes.flexForceBottom
+                )}
+                variant="contained"
+                startIcon={<DeleteForever/>}
+                onClick={(e) => props.handlerDeleteEpic(props.epicId, e)}
+            >
+                <Typography variant="body1">
+                    Delete Epic
+                </Typography>
+            </Button>
         </div>
     );
 };

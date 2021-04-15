@@ -3,6 +3,8 @@ import {EpicView} from "./EpicView";
 
 export const Epic = (props) => {
     return (
-        <EpicView epicData={props.epicData}/>
+        <EpicView epicData={props.epicData}
+                  handlerDeleteEpic={props.handlerDeleteEpic}
+        />
     );
 };

@@ -18,7 +18,9 @@ export const DashboardView = (props) => {
                     <ListItem
                         key={epic.epicId}
                     >
-                        <Epic epicData={epic}/>
+                        <Epic epicData={epic}
+                              handlerDeleteEpic={props.handlerDeleteEpic}
+                        />
                     </ListItem>
                 ))}
             </List>

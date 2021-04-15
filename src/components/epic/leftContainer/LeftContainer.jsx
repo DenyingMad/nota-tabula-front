@@ -10,6 +10,7 @@ export const LeftContainer = (props) => {
             epicDetails={props.epicDetails}
             epicId={props.epicId}
             handlerRenameEpic={handlerRenameEpic}
+            handlerDeleteEpic={props.handlerDeleteEpic}
         />
     );
 };
