@@ -18,11 +18,11 @@ export const TaskGroupTab = (props) => {
             .catch(error => console.log(error));
     };
     const handlerDeleteTaskList = (epicId, taskListId) => {
-        props.setTaskLists(props.taskLists.filter(item => item.taskListId !== taskListId))
+        props.setTaskLists(props.taskLists.filter(item => item.taskListId !== taskListId));
         deleteTaskList(epicId, taskListId)
             .then(r => r)
             .catch(error => console.log(error))
-    }
+    };
 
     return (
         <TabPanel value={props.selectedLayout} index={props.index} classes={props.classes}>

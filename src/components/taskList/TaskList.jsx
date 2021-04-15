@@ -11,8 +11,9 @@ export const TaskList = (props) => {
     const classes = useTaskListStyles();
 
     const [tasks, setTasks] = useState(props.tasks);
+
     const handlerDeleteTask = (epicId, taskListId, taskId) => {
-        setTasks(tasks.filter(item => item.taskId !== taskId))
+        setTasks(tasks.filter(item => item.taskId !== taskId));
         deleteTask(epicId, taskListId, taskId)
             .then(r => r)
             .catch(error => console.log(error))

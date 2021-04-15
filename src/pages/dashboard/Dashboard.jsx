@@ -40,8 +40,8 @@ const AddEpic = (epics, setEpics) => {
 };
 
 const DeleteEpic = (epics, setEpics, epicId) => {
-    setEpics(epics.filter(item => item.epicId !== epicId))
+    setEpics(epics.filter(item => item.epicId !== epicId));
     deleteEpic(epicId)
         .then(r => r)
         .catch(error => console.log(error))
-}
+};
