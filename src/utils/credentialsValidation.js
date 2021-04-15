@@ -7,7 +7,7 @@ const z_function = (password) => {
     for (let i = 0, l = 0, r = 0; i < n; i++) {
         if (i <= r)
             z[i] = Math.min(r - i + 1, z[i - l]);
-        while(i + z[i] < n && s[z[i]] === s[i + z[i]])
+        while (i + z[i] < n && s[z[i]] === s[i + z[i]])
             ++z[i];
         if (i + z[i] - 1 > r) {
             l = i;
@@ -34,7 +34,7 @@ export const passwordValidation = (password) => {
             special = /[!#$%&'()*+,./:;<=>?@^_{|}~-]/;
         // tests
         if (space.test(password)) {
-            dynamicErrorMsg =  "Password cannot contain spaces";
+            dynamicErrorMsg = "Password cannot contain spaces";
             reject(dynamicErrorMsg);
         }
         if (!upper.test(password)) {

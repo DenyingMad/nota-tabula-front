@@ -1,47 +1,47 @@
 import React from 'react';
-import {Container, Divider, Drawer, List, ListItem, ListItemIcon, ListItemText, makeStyles} from "@material-ui/core";
-import {Link, withRouter} from "react-router-dom";
+import {Container} from "@material-ui/core";
+import {withRouter} from "react-router-dom";
 import DashboardIcon from '@material-ui/icons/Dashboard';
 import AssessmentIcon from '@material-ui/icons/Assessment';
-import {useCommonStyles} from "../../styles/globalStyles";
+import {useHarnessStyles} from "./HarnessStyles";
+import clsx from "clsx";
+import {LeftToolBar} from "./LeftToolbar";
+import {HarnessAppBar} from "./HarnessAppBar";
 
 const HarnessView = (props) => {
+    const classes = useHarnessStyles();
+
     const {children} = props;
-    const classes = useCommonStyles();
+
+    const [open, setOpen] = React.useState(false);
+
+    const handleDrawerOpen = () => {
+        setOpen(true);
+    };
+    const handleDrawerClose = () => {
+        setOpen(false);
+    };
+
     return (
-        <div>
-            <LeftToolBar/>
-            <Container className={classes.mainContainer}>
-                {children}
+        <div className={classes.flexRow}>
+            <HarnessAppBar
+                handleDrawerOpen={handleDrawerOpen}
+                open={open}
+            />
+            <LeftToolBar
+                open={open}
+                handleDrawerOpen={handleDrawerOpen}
+                handleDrawerClose={handleDrawerClose}
+                sections={SECTIONS}
+            />
+            <Container maxWidth={false} className={clsx(classes.mainContainer, classes.content)}>
+                <div className={classes.toolbar}>
+                    {children}
+                </div>
             </Container>
         </div>
     );
 };
-
-const drawerWidth = 220;
-
-const useStyles = makeStyles({
-    root: {
-        display: "flex"
-    },
-    drawer: {
-        width: drawerWidth,
-        flexShrink: 0,
-    },
-    drawerPaper: {
-        width: drawerWidth,
-        backgroundColor: "#061c34",
-        borderRight: "1px solid #777777",
-        padding: 15,
-    },
-    listItem: {
-        border: "1px solid #fff",
-        borderRadius: 15,
-        marginBottom: 5,
-        paddingTop: 15,
-        paddingBottom: 15,
-    }
-})
 
 const SECTIONS = [
     {
@@ -54,38 +54,6 @@ const SECTIONS = [
         Icon: AssessmentIcon,
         href: '/reports',
     },
-    {
-        sectionName: 'Login',
-        Icon: DashboardIcon,
-        href: '/login',
-    },
-    {
-        sectionName: 'Register',
-        Icon: DashboardIcon,
-        href: '/join',
-    },
-]
-
-const LeftToolBar = () => {
-    const classes = useStyles();
-    return (
-        <Drawer className={classes.drawer} classes={{paper: classes.drawerPaper}} variant="permanent" anchor="left">
-            <div className="leftToolbar-header">Project cool name</div>
-            <Divider/>
-            <List>
-                {SECTIONS.map((section) => (
-                    <Link to={section.href} key={section.sectionName} className="leftToolbar-link">
-                        <ListItem button classes={{root: classes.listItem}}>
-                            <ListItemIcon className="section-icon">
-                                <section.Icon/>
-                            </ListItemIcon>
-                            <ListItemText primary={section.sectionName}/>
-                        </ListItem>
-                    </Link>
-                ))}
-            </List>
-        </Drawer>
-    );
-};
+];
 
 export default withRouter(HarnessView);
