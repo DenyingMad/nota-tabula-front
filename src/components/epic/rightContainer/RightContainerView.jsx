@@ -10,7 +10,11 @@ export const RightContainerView = (props) => {
     const classes = useRightContainerStyles();
 
     return (
-        <div className={clsx(classes.flexColumn, classes.epicRightSide, classes.fullWidth)}>
+        <div className={clsx(
+            classes.flexColumn,
+            classes.epicRightSide,
+            classes.fullWidth
+        )}>
             <TabSwitcher
                 selectedLayout={props.selectedLayout}
                 handlerChangeTab={props.handlerChangeTab}

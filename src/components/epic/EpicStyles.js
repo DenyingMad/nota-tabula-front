@@ -6,7 +6,7 @@ const epicStyles = theme => ({
     epicContainer: {
         maxHeight: "32rem",
         minHeight: "15rem",
-    }
+    },
 });
 
 export const useEpicStyles = makeStyles(epicStyles, {name: "EpicStyles"});

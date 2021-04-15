@@ -40,6 +40,7 @@ export const TaskInlined = (props) => {
             handlerRenameTask={handlerRenameTask}
             handlerPriorityChange={handlerPriorityChange}
             handlerCrudMenu={handlerCrudMenu}
+            handlerDeleteTask={props.handlerDeleteTask}
         />
     );
 };
