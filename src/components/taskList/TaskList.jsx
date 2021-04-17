@@ -27,7 +27,7 @@ export const TaskList = (props) => {
                         <TaskInlined
                             epicId={props.epicId}
                             taskListId={props.taskListId}
-                            taskCompleted={task.checked}
+                            taskStatus={task.status}
                             taskName={task.taskName}
                             taskDescription={task.taskDescription}
                             taskAssigned={task.assigned}

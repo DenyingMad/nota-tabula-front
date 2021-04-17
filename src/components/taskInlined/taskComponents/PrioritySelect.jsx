@@ -13,11 +13,11 @@ export const PrioritySelect = (props) => {
                 native
                 id="prioritySelect"
                 value={props.selectedPriority}
-                onChange={props.handlerPriorityChange}
+                onChange={(e) => props.handlerPriorityChange(props.taskId, e)}
             >
-                <option value={1}>Low</option>
-                <option value={2}>Medium</option>
-                <option value={3}>High</option>
+                <option value={"LOW"}>Low</option>
+                <option value={"MEDIUM"}>Medium</option>
+                <option value={"HIGH"}>High</option>
             </Select>
         </FormControl>
     );

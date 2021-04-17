@@ -1,8 +1,10 @@
 import React, {useState} from "react";
 import {TaskInlinedView} from "./TaskInlinedView";
+import {updatePriority, updateStatus} from "../../api/EpicApi";
+import {handlerStatusLookup, statusLookup} from "../../utils/taskStatusLookup";
 
 export const TaskInlined = (props) => {
-    const [btnCheck, setBtnCheck] = useState(props.taskCompleted);
+    const [btnCheck, setBtnCheck] = useState(statusLookup(props.taskStatus));
     const [anchorEl, setAnchorEl] = useState(null);
     const [selectedPriority, setSelectedPriority] = useState(props.taskPriority);
 
@@ -13,11 +15,17 @@ export const TaskInlined = (props) => {
         setAnchorEl(null);
     };
 
-    const handlerCheckBox = (event) => {
-        setBtnCheck(!btnCheck);
-    }
-    const handlerPriorityChange = (event) => {
+    const handlerCheckBox = (taskId, event) => {
+        setBtnCheck(event.target.checked);
+        updateStatus(taskId, handlerStatusLookup(event.target.checked))
+            .then(r => r)
+            .catch(error => console.log(error))
+    };
+    const handlerPriorityChange = (taskId, event) => {
         setSelectedPriority(event.target.value);
+        updatePriority(taskId, event.target.value)
+            .then(r => r)
+            .catch(error => console.log(error))
     };
     const handlerRenameTask = () => {
     };

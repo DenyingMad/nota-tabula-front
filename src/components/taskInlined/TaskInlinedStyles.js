@@ -9,6 +9,10 @@ const taskInlinedStyles = theme => ({
         padding: "0.5rem 0.5rem 0.5rem 0.5rem",
         gap: "0.5rem",
     },
+    taskDone: {
+        opacity: "0.7",
+        backgroundColor: "#eeeeee",
+    },
     prioritySelect: {
         fontSize: "0.75rem",
     },
