@@ -1,10 +1,10 @@
 import React, {useState} from "react";
 import {TaskInlinedView} from "./TaskInlinedView";
 import {updatePriority, updateStatus} from "../../api/EpicApi";
-import {handlerStatusLookup, statusLookup} from "../../utils/taskStatusLookup";
+import {TaskStatus} from "../../utils/taskStatusLookup";
 
 export const TaskInlined = (props) => {
-    const [btnCheck, setBtnCheck] = useState(statusLookup(props.taskStatus));
+    const [status, setStatus] = useState(new TaskStatus(props.taskStatus));
     const [anchorEl, setAnchorEl] = useState(null);
     const [selectedPriority, setSelectedPriority] = useState(props.taskPriority);
 
@@ -16,8 +16,9 @@ export const TaskInlined = (props) => {
     };
 
     const handlerCheckBox = (taskId, event) => {
-        setBtnCheck(event.target.checked);
-        updateStatus(taskId, handlerStatusLookup(event.target.checked))
+        const newStatus = new TaskStatus(event.target.checked);
+        setStatus(newStatus);
+        updateStatus(taskId, newStatus.statusValue)
             .then(r => r)
             .catch(error => console.log(error))
     };
@@ -34,7 +35,7 @@ export const TaskInlined = (props) => {
         <TaskInlinedView
             epicId={props.epicId}
             taskListId={props.taskListId}
-            btnCheck={btnCheck}
+            status={status}
             taskName={props.taskName}
             taskDescription={props.taskDescription}
             taskAssigned={props.assigned}
