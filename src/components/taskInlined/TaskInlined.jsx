@@ -1,5 +1,6 @@
 import React, {useState} from "react";
 import {TaskInlinedView} from "./TaskInlinedView";
+import {renameTask} from "../../api/EpicApi";
 
 export const TaskInlined = (props) => {
     const [btnCheck, setBtnCheck] = useState(props.taskCompleted);
@@ -19,7 +20,10 @@ export const TaskInlined = (props) => {
     const handlerPriorityChange = (event) => {
         setSelectedPriority(event.target.value);
     };
-    const handlerRenameTask = () => {
+    const handlerRenameTask = (value, inputProps) => {
+        renameTask(inputProps.taskid, value)
+            .then(r => r)
+            .catch(error => console.log(error))
     };
 
     return (

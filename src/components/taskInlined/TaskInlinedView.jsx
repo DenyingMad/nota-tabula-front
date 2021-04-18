@@ -39,6 +39,9 @@ export const TaskInlinedView = (props) => {
                 cancelOnUnfocus
                 cancelOnEscape
                 submitOnEnter
+                inputProps={{
+                    taskid: props.taskId,
+                }}
                 renderValue={(value => {
                     return (
                         <Typography>
