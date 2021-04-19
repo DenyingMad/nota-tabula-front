@@ -71,6 +71,14 @@ export const deleteEpic = (epicID) =>
     })
         .then(error => throwHttpErrors(error))
 
+export const renameTask = (taskId, newName) =>
+    fetch(`/api/rest/task/${taskId}/rename/${newName}`, {
+        method: "PUT",
+        ...getCommonHttpRequestProps()
+    })
+        .then(error => throwHttpErrors(error))
+        .then(response => response.json())
+
 export const updatePriority = (taskId, newPriority) =>
     fetch(`/api/rest/task/${taskId}/priority/${newPriority}`, {
         method: "PUT",

@@ -2,6 +2,7 @@ import React, {useState} from "react";
 import {TaskInlinedView} from "./TaskInlinedView";
 import {updatePriority, updateStatus} from "../../api/EpicApi";
 import {TaskStatus} from "../../utils/taskStatusLookup";
+import {renameTask} from "../../api/EpicApi";
 
 export const TaskInlined = (props) => {
     const [status, setStatus] = useState(new TaskStatus(props.taskStatus));
@@ -28,7 +29,10 @@ export const TaskInlined = (props) => {
             .then(r => r)
             .catch(error => console.log(error))
     };
-    const handlerRenameTask = () => {
+    const handlerRenameTask = (value, inputProps) => {
+        renameTask(inputProps.taskid, value)
+            .then(r => r)
+            .catch(error => console.log(error))
     };
 
     return (
