@@ -1,8 +1,7 @@
 import React, {useState} from "react";
 import {TaskInlinedView} from "./TaskInlinedView";
-import {updatePriority, updateStatus} from "../../api/EpicApi";
 import {TaskStatus} from "../../utils/taskStatusLookup";
-import {renameTask} from "../../api/EpicApi";
+import {renameTask, updatePriority, updateStatus} from "../../api/TaskApi";
 
 export const TaskInlined = (props) => {
     const [status, setStatus] = useState(new TaskStatus(props.taskStatus));
@@ -19,7 +18,7 @@ export const TaskInlined = (props) => {
     const handlerCheckBox = (taskId, event) => {
         const newStatus = new TaskStatus(event.target.checked);
         setStatus(newStatus);
-        updateStatus(taskId, newStatus.statusValue)
+        updateStatus(taskId, newStatus.getStatus())
             .then(r => r)
             .catch(error => console.log(error))
     };
