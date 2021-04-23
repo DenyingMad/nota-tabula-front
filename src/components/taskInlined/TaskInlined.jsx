@@ -1,10 +1,10 @@
 import React, {useState} from "react";
 import {TaskInlinedView} from "./TaskInlinedView";
-import {TaskStatus} from "../../utils/taskStatusLookup";
 import {renameTask, updatePriority, updateStatus} from "../../api/TaskApi";
+import {StatusEnum} from "../../utils/taskStatusLookup";
 
 export const TaskInlined = (props) => {
-    const [status, setStatus] = useState(new TaskStatus(props.taskStatus));
+    const [status, setStatus] = useState(StatusEnum.toStatusEnum(props.taskStatus));
     const [anchorEl, setAnchorEl] = useState(null);
     const [selectedPriority, setSelectedPriority] = useState(props.taskPriority);
 
@@ -16,7 +16,7 @@ export const TaskInlined = (props) => {
     };
 
     const handlerCheckBox = (taskId, event) => {
-        const newStatus = new TaskStatus(event.target.checked);
+        const newStatus = StatusEnum.toStatusEnum(event.target.checked);
         setStatus(newStatus);
         updateStatus(taskId, newStatus.getStatus())
             .then(r => r)

@@ -1,53 +1,37 @@
-class StatusEnum {
-  static open = new StatusEnum("OPEN");
-  static done = new StatusEnum("DONE");
-  static inProgress = new StatusEnum("IN_PROGRESS");
-  static review = new StatusEnum("REVIEW");
+export class StatusEnum {
+  static OPEN = new StatusEnum("OPEN", false);
+  static DONE = new StatusEnum("DONE", true);
+  static INPROGRESS = new StatusEnum("IN_PROGRESS", false);
+  static REVIEW = new StatusEnum("REVIEW", false);
 
-  constructor(statusType) {
+  constructor(statusType, isDone) {
       this.statusType = statusType;
+      this.isDone = isDone;
   };
 
   getStatus() {
       return this.statusType;
   };
-};
+  getIsDone() {
+      return this.isDone;
+  };
 
-export  class TaskStatus {
-    statusValue = StatusEnum.done;
-
-    constructor(status) {
-        switch (status) {
+  static toStatusEnum(status) {
+      switch (status) {
             case false:
-                this.statusValue = StatusEnum.open;
-                break;
+                return StatusEnum.OPEN;
             case true:
-                this.statusValue = StatusEnum.done;
-                break;
+                return StatusEnum.DONE;
             case 'OPEN':
-                this.statusValue = StatusEnum.open;
-                break;
+                return StatusEnum.OPEN;
             case 'DONE':
-                this.statusValue = StatusEnum.done;
-                break;
+                return StatusEnum.DONE
             case 'IN_PROGRESS':
-                this.statusValue = StatusEnum.inProgress;
-                break;
+                return  StatusEnum.INPROGRESS;
             case 'REVIEW':
-                this.statusValue = StatusEnum.review;
-                break;
+                return  StatusEnum.REVIEW;
             default:
                 throw new Error(`${status} is not an allowed value for a TaskStatus instance`);
-        }
-    };
-
-    toString() {
-        return `TaskStatus.${this.statusValue.getStatus()}`;
-    };
-    toCheckBoxValue() {
-        return (this.statusValue === StatusEnum.done);
-    };
-    getStatus() {
-        return this.statusValue.getStatus();
-    }
+        };
+  };
 };

@@ -22,10 +22,10 @@ export const TaskInlinedView = (props) => {
             classes.flexRow,
             classes.taskItem,
             classes.fullWidth,
-            {[classes.taskDone] : props.status.toCheckBoxValue()}
+            {[classes.taskDone] : props.status.getIsDone()}
         )}>
             <Checkbox
-                checked={props.status.toCheckBoxValue()}
+                checked={props.status.getIsDone()}
                 onChange={(e) => props.handlerCheckBox(props.taskId, e)}
                 inputProps={{'aria-label': 'primary checkbox'}}
             />
