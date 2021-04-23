@@ -11,6 +11,8 @@ export const LeftContainer = (props) => {
             epicId={props.epicId}
             handlerRenameEpic={handlerRenameEpic}
             handlerDeleteEpic={props.handlerDeleteEpic}
+            totalTasksInEpic={props.totalTasksInEpic}
+            totalTaskLists={props.totalTaskLists}
         />
     );
 };

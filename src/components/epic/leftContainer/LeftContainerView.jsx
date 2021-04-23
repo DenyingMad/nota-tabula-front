@@ -40,8 +40,8 @@ export const LeftContainerView = (props) => {
                 {props.epicDetails.epicDescription}
             </Typography>
             <EpicInfo
-                totalTasks={props.epicDetails.totalTasks}
-                totalTaskLists={props.epicDetails.totalTaskLists}
+                totalTasks={props.totalTasksInEpic}
+                totalTaskLists={props.totalTaskLists}
             />
             <SharedWith
                 style={classes.flexForceBottom}

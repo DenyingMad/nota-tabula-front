@@ -1,5 +1,5 @@
 import {useTaskListsStyles} from "./TaskGroupListStyles";
-import React from "react";
+import React, {useState} from "react";
 import Accordion from "@material-ui/core/Accordion";
 import clsx from "clsx";
 import AccordionSummary from "@material-ui/core/AccordionSummary";
@@ -11,25 +11,39 @@ import Menu from "@material-ui/core/Menu";
 import MenuItem from "@material-ui/core/MenuItem";
 import AccordionDetails from "@material-ui/core/AccordionDetails";
 import {TaskList} from "../taskList/TaskList";
+import {TaskListDetails} from "./TaskListDetails";
 
-export const TaskGroupListView = (props) => {
+export const TaskListAccordion = (props) => {
     const classes = useTaskListsStyles();
 
-    const showTaskLists = props.taskLists.map((taskList) => (
+    const [totalTasks, setTotalTasks] = useState(props.taskList.tasks.length);
+
+    const incrementTotalTasks = (value = 1) => {
+        props.incrementTotalTasksInEpic(value);
+        setTotalTasks(totalTasks + value);
+    };
+    const decrementTotalTasks = (value = 1) => {
+        props.decrementTotalTasksInEpic(value);
+        setTotalTasks(totalTasks - value)
+    };
+
+    return (
         <Accordion
-            key={taskList.taskListId}
+            key={props.taskList.taskListId}
             className={clsx(classes.accordionItems)}
         >
             <AccordionSummary
                 expandIcon={<ExpandMore/>}
-                aria-controls={taskList.taskListId + "content"}
-                id={taskList.taskListId + "header"}
+                aria-controls={props.taskList.taskListId + "content"}
+                id={props.taskList.taskListId + "header"}
             >
                 <div className={clsx(classes.flexRow, classes.summaryItems, classes.fullWidth)}>
                     <Typography>
-                        {taskList.taskListName}
+                        {props.taskList.taskListName}
                     </Typography>
-                    <Typography className={classes.listShortInfo}>Total tasks: {taskList.tasks.length}</Typography>
+                    <TaskListDetails
+                        totalTasks={totalTasks}
+                    />
                     <FormControlLabel
                         className={classes.flexForceRight}
                         aria-label="crudDropdown"
@@ -42,7 +56,7 @@ export const TaskGroupListView = (props) => {
                                     <MoreVert fontSize="small"/>
                                 </Button>
                                 <Menu
-                                    id={"crudMenu" + taskList.taskListId}
+                                    id={"crudMenu" + props.taskList.taskListId}
                                     anchorEl={props.anchorEl}
                                     keepMounted
                                     open={Boolean(props.anchorEl)}
@@ -52,7 +66,7 @@ export const TaskGroupListView = (props) => {
                                     <MenuItem onClick={
                                         (e) => {
                                             props.setAnchorEl(null);
-                                            props.handlerDeleteTaskList(props.epicId, taskList.taskListId, e)
+                                            props.handlerDeleteTaskList(props.epicId, props.taskList.taskListId, e)
                                         }
                                     }>Delete</MenuItem>
                                 </Menu>
@@ -64,17 +78,13 @@ export const TaskGroupListView = (props) => {
             <AccordionDetails>
                 <TaskList
                     epicId={props.epicId}
-                    taskListName={taskList.taskListName}
-                    taskListId={taskList.taskListId}
-                    tasks={taskList.tasks}
+                    taskListName={props.taskList.taskListName}
+                    taskListId={props.taskList.taskListId}
+                    tasks={props.taskList.tasks}
+                    incrementTotalTasks={incrementTotalTasks}
+                    decrementTotalTasks={decrementTotalTasks}
                 />
             </AccordionDetails>
         </Accordion>
-    ));
-
-    return (
-        <div className={classes.taskLists}>
-            {showTaskLists}
-        </div>
     );
 };

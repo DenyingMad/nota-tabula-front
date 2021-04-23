@@ -18,6 +18,7 @@ export const AddTaskForm = (props) => {
     });
 
     const handleAddTask = taskName => {
+        props.incrementTotalTasks();
         addTask(taskName, props.setTasks, props.epicId, props.taskListId, props.tasks);
     };
 

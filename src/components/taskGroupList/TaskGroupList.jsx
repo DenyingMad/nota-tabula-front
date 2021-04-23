@@ -1,5 +1,5 @@
 import React from "react";
-import {TaskGroupListView} from "./TaskGroupListView";
+import {TaskListAccordion} from "./TaskAccordion";
 
 export const TaskGroupList = (props) => {
     const [anchorEl, setAnchorEl] = React.useState(null);
@@ -12,14 +12,21 @@ export const TaskGroupList = (props) => {
     };
 
     return (
-        <TaskGroupListView
-            anchorEl={anchorEl}
-            handlerCrudMenu={handlerCrudMenu}
-            handlerCrudActions={handlerCrudActions}
-            setAnchorEl={setAnchorEl}
-            epicId={props.epicId}
-            taskLists={props.taskLists}
-            handlerDeleteTaskList={props.handlerDeleteTaskList}
-        />
+        <div>
+            {props.taskLists.map((taskList) => (
+                <TaskListAccordion
+                        key={`TaskListAccordion-${taskList.taskListId}`}
+                        anchorEl={anchorEl}
+                        handlerCrudMenu={handlerCrudMenu}
+                        handlerCrudActions={handlerCrudActions}
+                        setAnchorEl={setAnchorEl}
+                        epicId={props.epicId}
+                        handlerDeleteTaskList={props.handlerDeleteTaskList}
+                        taskList={taskList}
+                        incrementTotalTasksInEpic={props.incrementTotalTasksInEpic}
+                        decrementTotalTasksInEpic={props.decrementTotalTasksInEpic}
+                />
+            ))}
+        </div>
     );
 };
