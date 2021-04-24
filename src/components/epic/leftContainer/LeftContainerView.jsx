@@ -16,26 +16,32 @@ export const LeftContainerView = (props) => {
             classes.epicSideBar,
             classes.flexColumn
         )}>
-            <Typography
-                variant="h5"
-                align="center">
-                <EdiText
-                    value={props.epicDetails.epicName === null ? "New Epic" : props.epicDetails.epicName}
-                    type="text"
-                    onSave={props.handlerRenameEpic}
-                    editButtonClassName={classes.renameButton}
-                    editButtonContent={<Create/>}
-                    saveButtonContent={<Done/>}
-                    saveButtonClassName={classes.renameButton}
-                    cancelButtonContent={<Clear/>}
-                    cancelButtonClassName={classes.renameButton}
-                    hideIcons
-                    showButtonsOnHover
-                    cancelOnUnfocus
-                    cancelOnEscape
-                    submitOnEnter
-                />
-            </Typography>
+            <EdiText
+                value={props.epicDetails.epicName === null ? "New Epic" : props.epicDetails.epicName}
+                type="text"
+                onSave={props.handlerRenameEpic}
+                editButtonClassName={classes.renameButton}
+                editButtonContent={<Create/>}
+                saveButtonContent={<Done/>}
+                saveButtonClassName={classes.renameButton}
+                cancelButtonContent={<Clear/>}
+                cancelButtonClassName={classes.renameButton}
+                hideIcons
+                showButtonsOnHover
+                cancelOnUnfocus
+                cancelOnEscape
+                submitOnEnter
+                inputProps={{
+                    epicid: props.epicId,
+                }}
+                renderValue={(value => {
+                    return (
+                        <Typography variant="h5" align="center">
+                            {value}
+                        </Typography>
+                    )
+                })}
+            />
             <Typography variant="body1">
                 {props.epicDetails.epicDescription}
             </Typography>

@@ -78,3 +78,11 @@ export const renameTask = (taskId, newName) =>
     })
         .then(error => throwHttpErrors(error))
         .then(response => response.json())
+
+export const renameEpic = (epicId, newName) =>
+    fetch(`/api/rest/epic/${epicId}/rename/${newName}`, {
+        method: "PUT",
+        ...getCommonHttpRequestProps()
+    })
+        .then(error => throwHttpErrors(error))
+        .then(response => response.json())
