@@ -11,15 +11,15 @@ export const TaskGroupTab = (props) => {
     const classes = props.classes;
 
     const handlerAddTaskList = (epicId) => {
-        props.incrementTotalTaskLists();
+        props.changeTotalTaskLists(1);
         createTaskList(epicId, "Default Name")
             .then(r => {
                 props.setTaskLists([...props.taskLists, r])
             })
             .catch(error => console.log(error));
     };
-    const handlerDeleteTaskList = (epicId, taskListId) => {
-        props.decrementTotalTaskLists();
+    const handlerDeleteTaskList = (epicId, taskListId, tasksInList) => {
+        props.changeTotalTaskLists(-1, tasksInList * -1);
         props.setTaskLists(props.taskLists.filter(item => item.taskListId !== taskListId));
         deleteTaskList(epicId, taskListId)
             .then(r => r)
@@ -33,8 +33,7 @@ export const TaskGroupTab = (props) => {
                     epicId={props.epicId}
                     taskLists={props.taskLists}
                     handlerDeleteTaskList={handlerDeleteTaskList}
-                    incrementTotalTasksInEpic={props.incrementTotalTasksInEpic}
-                    decrementTotalTasksInEpic={props.decrementTotalTasksInEpic}
+                    changeTotalTasksInEpic={props.changeTotalTasksInEpic}
                 />
                 <Button
                     type="button"

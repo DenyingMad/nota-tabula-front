@@ -18,13 +18,9 @@ export const TaskListAccordion = (props) => {
 
     const [totalTasks, setTotalTasks] = useState(props.taskList.tasks.length);
 
-    const incrementTotalTasks = (value = 1) => {
-        props.incrementTotalTasksInEpic(value);
+    const changeTotalTasks = value => {
+        props.changeTotalTasksInEpic(value);
         setTotalTasks(totalTasks + value);
-    };
-    const decrementTotalTasks = (value = 1) => {
-        props.decrementTotalTasksInEpic(value);
-        setTotalTasks(totalTasks - value)
     };
 
     return (
@@ -66,7 +62,12 @@ export const TaskListAccordion = (props) => {
                                     <MenuItem onClick={
                                         (e) => {
                                             props.setAnchorEl(null);
-                                            props.handlerDeleteTaskList(props.epicId, props.taskList.taskListId, e)
+                                            props.handlerDeleteTaskList(
+                                                props.epicId,
+                                                props.taskList.taskListId,
+                                                totalTasks,
+                                                e
+                                            )
                                         }
                                     }>Delete</MenuItem>
                                 </Menu>
@@ -81,8 +82,7 @@ export const TaskListAccordion = (props) => {
                     taskListName={props.taskList.taskListName}
                     taskListId={props.taskList.taskListId}
                     tasks={props.taskList.tasks}
-                    incrementTotalTasks={incrementTotalTasks}
-                    decrementTotalTasks={decrementTotalTasks}
+                    changeTotalTasks={changeTotalTasks}
                 />
             </AccordionDetails>
         </Accordion>

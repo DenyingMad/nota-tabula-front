@@ -23,8 +23,7 @@ export const TaskGroupList = (props) => {
                         epicId={props.epicId}
                         handlerDeleteTaskList={props.handlerDeleteTaskList}
                         taskList={taskList}
-                        incrementTotalTasksInEpic={props.incrementTotalTasksInEpic}
-                        decrementTotalTasksInEpic={props.decrementTotalTasksInEpic}
+                        changeTotalTasksInEpic={props.changeTotalTasksInEpic}
                 />
             ))}
         </div>

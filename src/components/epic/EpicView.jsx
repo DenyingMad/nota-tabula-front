@@ -8,40 +8,40 @@ import {useEpicStyles} from "./EpicStyles";
 export const EpicView = (props) => {
     const classes = useEpicStyles();
 
-    const [totalTaskLists, setTotalTaskLists] = useState(props.epicData.details.totalTaskList);
-    const [totalTasks, setTotalTasks] = useState(props.epicData.details.totalTasks);
     const [taskLists, setTaskLists] = useState(props.epicData.taskLists);
+    const [epicDetails, setEpicDetails] = useState(props.epicData.details);
 
-    const incrementTotalTasksInEpic = (value = 1) => {
-        setTotalTasks(totalTasks + value);
+    const changeTotalTasksInEpic = value => {
+        setEpicDetails(
+            {
+                ...epicDetails,
+                totalTasks: epicDetails.totalTasks + value,
+            }
+        )
     };
-    const decrementTotalTasksInEpic = (value = 1) => {
-        setTotalTasks(totalTasks - value);
-    };
-    const incrementTotalTaskLists = (value = 1) => {
-        setTotalTaskLists(totalTaskLists + value);
-    };
-    const decrementTotalTaskLists = (value = 1) => {
-        setTotalTaskLists(totalTaskLists - value);
+    const changeTotalTaskLists = (taskListValue, taskValue = 0) => {
+        setEpicDetails(
+            {
+                ...epicDetails,
+                totalTaskList: epicDetails.totalTaskList + taskListValue,
+                totalTasks: epicDetails.totalTasks + taskValue,
+            }
+        )
     };
 
     return (
         <Card className={clsx(classes.flexRow, classes.epicContainer, classes.fullWidth)}>
             <LeftContainer
                 epicId={props.epicData.epicId}
-                epicDetails={props.epicData.details}
-                totalTasksInEpic={totalTasks}
-                totalTaskLists={totalTaskLists}
+                epicDetails={epicDetails}
                 handlerDeleteEpic={props.handlerDeleteEpic}
             />
             <RightContainer
                 epicId={props.epicData.epicId}
                 taskLists={taskLists}
                 setTaskLists={setTaskLists}
-                incrementTotalTasksInEpic={incrementTotalTasksInEpic}
-                decrementTotalTasksInEpic={decrementTotalTasksInEpic}
-                incrementTotalTaskLists={incrementTotalTaskLists}
-                decrementTotalTaskLists={decrementTotalTaskLists}
+                changeTotalTasksInEpic={changeTotalTasksInEpic}
+                changeTotalTaskLists={changeTotalTaskLists}
             />
         </Card>
     );

@@ -15,10 +15,8 @@ export const RightContainer = (props) => {
             taskLists={props.taskLists}
             epicId={props.epicId}
             setTaskLists={props.setTaskLists}
-            incrementTotalTasksInEpic={props.incrementTotalTasksInEpic}
-            decrementTotalTasksInEpic={props.decrementTotalTasksInEpic}
-            incrementTotalTaskLists={props.incrementTotalTaskLists}
-            decrementTotalTaskLists={props.decrementTotalTaskLists}
+            changeTotalTasksInEpic={props.changeTotalTasksInEpic}
+            changeTotalTaskLists={props.changeTotalTaskLists}
         />
     );
 };

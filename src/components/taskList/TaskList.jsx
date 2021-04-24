@@ -13,7 +13,7 @@ export const TaskList = (props) => {
     const [tasks, setTasks] = useState(props.tasks);
 
     const handlerDeleteTask = (epicId, taskListId, taskId) => {
-        props.decrementTotalTasks();
+        props.changeTotalTasks(-1);
         setTasks(tasks.filter(item => item.taskId !== taskId));
         deleteTask(epicId, taskListId, taskId)
             .then(r => r)
@@ -44,7 +44,7 @@ export const TaskList = (props) => {
                 setTasks={setTasks}
                 epicId={props.epicId}
                 taskListId={props.taskListId}
-                incrementTotalTasks={props.incrementTotalTasks}
+                changeTotalTasks={props.changeTotalTasks}
             />
         </div>
     );
