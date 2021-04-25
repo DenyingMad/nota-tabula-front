@@ -126,7 +126,8 @@ export const RegisterView = (props) => {
                             : null}
                         <Button
                             className={clsx(
-                                classes.submitButton
+                                classes.addItemButton,
+                                classes.buttonTealColor
                             )}
                             type="submit">
                             <Typography variant="body1">

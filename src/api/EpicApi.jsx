@@ -70,3 +70,11 @@ export const deleteEpic = (epicID) =>
         ...getCommonHttpRequestProps()
     })
         .then(error => throwHttpErrors(error))
+
+export const renameEpic = (epicId, newName) =>
+    fetch(`/api/rest/epic/${epicId}/rename/${newName}`, {
+        method: "PUT",
+        ...getCommonHttpRequestProps()
+    })
+        .then(error => throwHttpErrors(error))
+        .then(response => response.json())

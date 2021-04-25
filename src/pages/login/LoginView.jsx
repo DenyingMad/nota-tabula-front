@@ -95,7 +95,7 @@ export const LoginForm = (props) => {
                             <Typography variant="body1" color="error">{props.message}</Typography>
                             : null}
                         <Button
-                            className={classes.submitButton}
+                            className={clsx(classes.addItemButton, classes.buttonTealColor)}
                             type="submit">
                             <Typography variant="body1">
                                 Sign in
