@@ -11,14 +11,23 @@ export const TaskGroupTab = (props) => {
     const classes = props.classes;
 
     const handlerAddTaskList = (epicId) => {
+        const addedTaskListCounter = 1;
+
+        props.changeTotalTaskLists(addedTaskListCounter);
+
         createTaskList(epicId, "Default Name")
             .then(r => {
                 props.setTaskLists([...props.taskLists, r])
             })
             .catch(error => console.log(error));
     };
-    const handlerDeleteTaskList = (epicId, taskListId) => {
+    const handlerDeleteTaskList = (epicId, taskListId, tasksCounter) => {
+        const deletedTaskListCounter = -1;
+        const deletedTaskCounter = -1 * tasksCounter; // Удаляем все вложенные таски
+
+        props.changeTotalTaskLists(deletedTaskListCounter, deletedTaskCounter);
         props.setTaskLists(props.taskLists.filter(item => item.taskListId !== taskListId));
+
         deleteTaskList(epicId, taskListId)
             .then(r => r)
             .catch(error => console.log(error))
@@ -31,6 +40,7 @@ export const TaskGroupTab = (props) => {
                     epicId={props.epicId}
                     taskLists={props.taskLists}
                     handlerDeleteTaskList={handlerDeleteTaskList}
+                    changeTotalTasksInEpic={props.changeTotalTasksInEpic}
                 />
                 <Button
                     type="button"

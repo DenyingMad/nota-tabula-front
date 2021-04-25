@@ -26,6 +26,8 @@ export const RightContainerView = (props) => {
                 epicId={props.epicId}
                 taskLists={props.taskLists}
                 setTaskLists={props.setTaskLists}
+                changeTotalTasksInEpic={props.changeTotalTasksInEpic}
+                changeTotalTaskLists={props.changeTotalTaskLists}
             />
             <KanbanTab
                 selectedLayout={props.selectedLayout}

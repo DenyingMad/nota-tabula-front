@@ -13,7 +13,11 @@ export const TaskList = (props) => {
     const [tasks, setTasks] = useState(props.tasks);
 
     const handlerDeleteTask = (epicId, taskListId, taskId) => {
+        const deletedTaskCounter = -1;
+
+        props.changeTotalTasks(deletedTaskCounter);
         setTasks(tasks.filter(item => item.taskId !== taskId));
+
         deleteTask(epicId, taskListId, taskId)
             .then(r => r)
             .catch(error => console.log(error))
@@ -43,6 +47,7 @@ export const TaskList = (props) => {
                 setTasks={setTasks}
                 epicId={props.epicId}
                 taskListId={props.taskListId}
+                changeTotalTasks={props.changeTotalTasks}
             />
         </div>
     );
