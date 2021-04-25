@@ -62,12 +62,7 @@ export const TaskListAccordion = (props) => {
                                     <MenuItem onClick={
                                         (e) => {
                                             props.setAnchorEl(null);
-                                            props.handlerDeleteTaskList(
-                                                props.epicId,
-                                                props.taskList.taskListId,
-                                                totalTasks,
-                                                e
-                                            )
+                                            props.handlerDeleteTaskList(props.epicId, props.taskList.taskListId, totalTasks)
                                         }
                                     }>Delete</MenuItem>
                                 </Menu>
