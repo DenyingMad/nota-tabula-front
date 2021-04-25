@@ -1,12 +1,13 @@
 import React, {useState} from "react";
 import {TaskInlinedView} from "./TaskInlinedView";
 import {renameTask, updatePriority, updateStatus} from "../../api/TaskApi";
-import {StatusEnum} from "../../utils/taskStatusLookup";
+import {TaskStatus} from "../../utils/TaskStatusEnum";
+import {PriorityEnum} from "../../utils/PriorityEnums";
 
 export const TaskInlined = (props) => {
-    const [status, setStatus] = useState(StatusEnum.toStatusEnum(props.taskStatus));
+    const [status, setStatus] = useState(TaskStatus.toStatusEnum(props.taskStatus));
     const [anchorEl, setAnchorEl] = useState(null);
-    const [selectedPriority, setSelectedPriority] = useState(props.taskPriority);
+    const [selectedPriority, setSelectedPriority] = useState(PriorityEnum.toPriorityEnum(props.taskPriority));
 
     const handlerCrudMenu = (event) => {
         setAnchorEl(event.currentTarget);
@@ -16,14 +17,16 @@ export const TaskInlined = (props) => {
     };
 
     const handlerCheckBox = (taskId, event) => {
-        const newStatus = StatusEnum.toStatusEnum(event.target.checked);
+        const newStatus = event.target.checked ? TaskStatus.DONE : TaskStatus.OPEN;
         setStatus(newStatus);
+
         updateStatus(taskId, newStatus.getStatus())
             .then(r => r)
             .catch(error => console.log(error))
     };
     const handlerPriorityChange = (taskId, event) => {
-        setSelectedPriority(event.target.value);
+        setSelectedPriority(PriorityEnum.toPriorityEnum(event.target.value));
+
         updatePriority(taskId, event.target.value)
             .then(r => r)
             .catch(error => console.log(error))
