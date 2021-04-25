@@ -1,11 +1,13 @@
 import React, {useState} from "react";
 import {TaskInlinedView} from "./TaskInlinedView";
-import {renameTask} from "../../api/EpicApi";
+import {renameTask, updatePriority, updateStatus} from "../../api/TaskApi";
+import {TaskStatus} from "../../utils/TaskStatusEnum";
+import {PriorityEnum} from "../../utils/PriorityEnums";
 
 export const TaskInlined = (props) => {
-    const [btnCheck, setBtnCheck] = useState(props.taskCompleted);
+    const [status, setStatus] = useState(TaskStatus.toStatusEnum(props.taskStatus));
     const [anchorEl, setAnchorEl] = useState(null);
-    const [selectedPriority, setSelectedPriority] = useState(props.taskPriority);
+    const [selectedPriority, setSelectedPriority] = useState(PriorityEnum.toPriorityEnum(props.taskPriority));
 
     const handlerCrudMenu = (event) => {
         setAnchorEl(event.currentTarget);
@@ -14,11 +16,20 @@ export const TaskInlined = (props) => {
         setAnchorEl(null);
     };
 
-    const handlerCheckBox = (event) => {
-        setBtnCheck(!btnCheck);
-    }
-    const handlerPriorityChange = (event) => {
-        setSelectedPriority(event.target.value);
+    const handlerCheckBox = (taskId, event) => {
+        const newStatus = event.target.checked ? TaskStatus.DONE : TaskStatus.OPEN;
+        setStatus(newStatus);
+
+        updateStatus(taskId, newStatus.getStatus())
+            .then(r => r)
+            .catch(error => console.log(error))
+    };
+    const handlerPriorityChange = (taskId, event) => {
+        setSelectedPriority(PriorityEnum.toPriorityEnum(event.target.value));
+
+        updatePriority(taskId, event.target.value)
+            .then(r => r)
+            .catch(error => console.log(error))
     };
     const handlerRenameTask = (value, inputProps) => {
         renameTask(inputProps.taskid, value)
@@ -30,7 +41,7 @@ export const TaskInlined = (props) => {
         <TaskInlinedView
             epicId={props.epicId}
             taskListId={props.taskListId}
-            btnCheck={btnCheck}
+            status={status}
             taskName={props.taskName}
             taskDescription={props.taskDescription}
             taskAssigned={props.assigned}

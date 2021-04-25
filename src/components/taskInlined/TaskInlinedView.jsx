@@ -18,10 +18,15 @@ export const TaskInlinedView = (props) => {
     const classes = useTaskInlinedStyles();
 
     return (
-        <Card className={clsx(classes.flexRow, classes.taskItem, classes.fullWidth)}>
+        <Card className={clsx(
+            classes.flexRow,
+            classes.taskItem,
+            classes.fullWidth,
+            {[classes.taskDone] : props.status.getIsDone()}
+        )}>
             <Checkbox
-                checked={props.btnCheck}
-                onChange={props.handlerCheckBox}
+                checked={props.status.getIsDone()}
+                onChange={(e) => props.handlerCheckBox(props.taskId, e)}
                 inputProps={{'aria-label': 'primary checkbox'}}
             />
             <EdiText
@@ -52,6 +57,7 @@ export const TaskInlinedView = (props) => {
             />
             <TaskShared/>
             <PrioritySelect
+                taskId={props.taskId}
                 selectedPriority={props.selectedPriority}
                 handlerPriorityChange={props.handlerPriorityChange}
             />
@@ -74,7 +80,7 @@ export const TaskInlinedView = (props) => {
                 <MenuItem onClick={
                     (e) => {
                         props.setAnchorEl(null);
-                        props.handlerDeleteTask(props.epicId, props.taskListId ,props.taskId ,e);
+                        props.handlerDeleteTask(props.epicId, props.taskListId, props.taskId, e);
                     }
                 }>Delete</MenuItem>
             </Menu>

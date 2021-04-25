@@ -55,7 +55,7 @@ export const globalStyles = theme => ({
         marginRight: "auto",
     },
     renameButton: {
-        backgroundColor: "#fff",
+        backgroundColor: "transparent",
         border: "0px",
     },
     scrollY: {
