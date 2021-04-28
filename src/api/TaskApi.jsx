@@ -1,7 +1,8 @@
 import {getCommonHttpRequestProps, throwHttpErrors} from "../common";
+import {TASK_SERVICE_API_URL} from "./ServicesApiUrls";
 
 export const renameTask = (taskId, newName) =>
-    fetch(`/api/rest/task/${taskId}/rename/${newName}`, {
+    fetch(`${TASK_SERVICE_API_URL}/task/${taskId}/rename/${newName}`, {
         method: "PUT",
         ...getCommonHttpRequestProps()
     })
@@ -9,7 +10,7 @@ export const renameTask = (taskId, newName) =>
         .then(response => response.json())
 
 export const updatePriority = (taskId, newPriority) =>
-    fetch(`/api/rest/task/${taskId}/priority/${newPriority}`, {
+    fetch(`${TASK_SERVICE_API_URL}/task/${taskId}/priority/${newPriority}`, {
         method: "PUT",
         ...getCommonHttpRequestProps()
     })
@@ -17,7 +18,7 @@ export const updatePriority = (taskId, newPriority) =>
         .then(response => response.json())
 
 export const updateStatus = (taskId, newStatus) =>
-    fetch(`/api/rest/task/${taskId}/status/${newStatus}`, {
+    fetch(`${TASK_SERVICE_API_URL}/task/${taskId}/status/${newStatus}`, {
         method: "PUT",
         ...getCommonHttpRequestProps()
     })

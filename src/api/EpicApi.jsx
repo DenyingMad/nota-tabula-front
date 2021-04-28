@@ -1,7 +1,8 @@
 import {getCommonHttpRequestProps, throwHttpErrors} from "../common";
+import {hardcodedProjectId, TASK_SERVICE_API_URL} from "./ServicesApiUrls";
 
 export const createEpic = () =>
-    fetch(`/api/rest/epic`, {
+    fetch(`${TASK_SERVICE_API_URL}/${hardcodedProjectId}/epic`, {
         method: "POST",
         ...getCommonHttpRequestProps(),
     })
@@ -9,7 +10,7 @@ export const createEpic = () =>
         .then(response => response.json())
 
 export const getAllEpics = () =>
-    fetch(`/api/rest/epic`, {
+    fetch(`${TASK_SERVICE_API_URL}/epic`, {
         method: "GET",
         ...getCommonHttpRequestProps(),
     })
@@ -17,7 +18,7 @@ export const getAllEpics = () =>
         .then(response => response.json())
 
 export const createTaskList = (uuid, taskListName) =>
-    fetch(`/api/rest/epic/${uuid}/task-list`, {
+    fetch(`${TASK_SERVICE_API_URL}/epic/${uuid}/task-list`, {
         method: "POST",
         ...getCommonHttpRequestProps(),
         body: taskListName
@@ -26,7 +27,7 @@ export const createTaskList = (uuid, taskListName) =>
         .then(response => response.json())
 
 export const createTask = (uuid, taskListId, taskName) =>
-    fetch(`/api/rest/epic/${uuid}/task-list/${taskListId}/task`, {
+    fetch(`${TASK_SERVICE_API_URL}/epic/${uuid}/task-list/${taskListId}/task`, {
         method: "POST",
         ...getCommonHttpRequestProps(),
         body: taskName,
@@ -35,7 +36,7 @@ export const createTask = (uuid, taskListId, taskName) =>
         .then(response => response.json())
 
 export const getEpicByUuid = (uuid) =>
-    fetch(`/api/rest/epic/${uuid}`, {
+    fetch(`${TASK_SERVICE_API_URL}/epic/${uuid}`, {
         method: "GET",
         ...getCommonHttpRequestProps()
     })
@@ -43,7 +44,7 @@ export const getEpicByUuid = (uuid) =>
         .then(response => response.json())
 
 export const getTaskById = (uuid, id) =>
-    fetch(`/api/rest/epic/${uuid}/task/${id}`, {
+    fetch(`${TASK_SERVICE_API_URL}/epic/${uuid}/task/${id}`, {
         method: "GET",
         ...getCommonHttpRequestProps()
     })
@@ -51,28 +52,28 @@ export const getTaskById = (uuid, id) =>
         .then(response => response.json())
 
 export const deleteTask = (epicId, taskListId, taskId) =>
-    fetch(`/api/rest/epic/${epicId}/task-list/${taskListId}/task/${taskId}`, {
+    fetch(`${TASK_SERVICE_API_URL}/epic/${epicId}/task-list/${taskListId}/task/${taskId}`, {
         method: "DELETE",
         ...getCommonHttpRequestProps()
     })
         .then(error => throwHttpErrors(error))
 
 export const deleteTaskList = (epicId, taskListId) =>
-    fetch(`/api/rest/epic/${epicId}/task-list/${taskListId}`, {
+    fetch(`${TASK_SERVICE_API_URL}/epic/${epicId}/task-list/${taskListId}`, {
         method: "DELETE",
         ...getCommonHttpRequestProps()
     })
         .then(error => throwHttpErrors(error))
 
 export const deleteEpic = (epicID) =>
-    fetch(`/api/rest/epic/${epicID}`, {
+    fetch(`${TASK_SERVICE_API_URL}/epic/${epicID}`, {
         method: "DELETE",
         ...getCommonHttpRequestProps()
     })
         .then(error => throwHttpErrors(error))
 
 export const renameEpic = (epicId, newName) =>
-    fetch(`/api/rest/epic/${epicId}/rename/${newName}`, {
+    fetch(`${TASK_SERVICE_API_URL}/epic/${epicId}/rename/${newName}`, {
         method: "PUT",
         ...getCommonHttpRequestProps()
     })

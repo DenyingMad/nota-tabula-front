@@ -17,7 +17,7 @@ export const LeftContainerView = (props) => {
             classes.flexColumn
         )}>
             <EdiText
-                value={props.epicDetails.epicName === null ? "New Epic" : props.epicDetails.epicName}
+                value={props.epicDetails.epicName}
                 type="text"
                 onSave={props.handlerRenameEpic}
                 editButtonClassName={classes.renameButton}
