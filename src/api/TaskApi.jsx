@@ -1,8 +1,8 @@
 import {getCommonHttpRequestProps, throwHttpErrors} from "../common";
-import {taskServiceApiUrl} from "./EpicApi";
+import {PROJECT_API_URL} from "./EpicApi";
 
 export const renameTask = (taskId, newName) =>
-    fetch(`${taskServiceApiUrl}/task/${taskId}/rename/${newName}`, {
+    fetch(`${PROJECT_API_URL}/task/${taskId}/rename/${newName}`, {
         method: "PUT",
         ...getCommonHttpRequestProps()
     })
@@ -10,7 +10,7 @@ export const renameTask = (taskId, newName) =>
         .then(response => response.json())
 
 export const updatePriority = (taskId, newPriority) =>
-    fetch(`${taskServiceApiUrl}/task/${taskId}/priority/${newPriority}`, {
+    fetch(`${PROJECT_API_URL}/task/${taskId}/priority/${newPriority}`, {
         method: "PUT",
         ...getCommonHttpRequestProps()
     })
@@ -18,7 +18,7 @@ export const updatePriority = (taskId, newPriority) =>
         .then(response => response.json())
 
 export const updateStatus = (taskId, newStatus) =>
-    fetch(`${taskServiceApiUrl}/task/${taskId}/status/${newStatus}`, {
+    fetch(`${PROJECT_API_URL}/task/${taskId}/status/${newStatus}`, {
         method: "PUT",
         ...getCommonHttpRequestProps()
     })
