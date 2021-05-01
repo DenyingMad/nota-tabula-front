@@ -36,7 +36,7 @@ export const LeftContainerView = (props) => {
                 }}
                 renderValue={(value => {
                     return (
-                        <Typography variant="h5" align="center">
+                        <Typography variant="h5" align="left">
                             {value}
                         </Typography>
                     )
