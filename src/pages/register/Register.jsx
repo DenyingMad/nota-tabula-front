@@ -58,9 +58,12 @@ const validationSchema = Yup.object({
 export const Register = props => {
     const [context, setContext] = useContext(AppContext);
     const [registerError, setRegisterError] = useState();
+    const [showPassword, setShowPassword] = useState(false);
+    const [checkMark, setCheckMark] = useState(false);
 
-    const {history, location} = props;
-    const onRegister = handleRegister(history, location, context, setContext, setRegisterError);
+    const onRegister = handleRegister(props.history, context, setContext, setRegisterError);
+    const handleClickShowPassword = () => setShowPassword(!showPassword);
+    const handleCheckBox = () => setCheckMark(!checkMark);
 
     const formik = useFormik({
         initialValues: {
@@ -73,10 +76,7 @@ export const Register = props => {
             return onRegister(values);
         }
     });
-    const [showPassword, setShowPassword] = useState(false);
-    const [checkMark, setCheckMark] = useState(false);
-    const handleClickShowPassword = () => setShowPassword(!showPassword);
-    const handleCheckBox = () => setCheckMark(!checkMark);
+
     return (
         <RegisterView
             values={formik.values}
