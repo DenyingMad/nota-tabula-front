@@ -57,8 +57,6 @@ export const globalStyles = theme => ({
     renameButton: {
         backgroundColor: "transparent",
         border: "0px",
-        transform: "scale(0.8)",
-        color: "#9e9e9e",
     },
     scrollY: {
         overflowY: "auto",
