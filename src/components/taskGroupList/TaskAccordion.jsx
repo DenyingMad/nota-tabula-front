@@ -70,7 +70,7 @@ export const TaskListAccordion = (props) => {
                                             props.setAnchorEl(null);
                                             props.handlerDeleteTaskList(props.epicId, taskListId, totalTasks);
                                         }
-                                    }>{"Delete"+props.taskList.taskListId}</MenuItem>
+                                    }>Delete</MenuItem>
                                 </Menu>
                             </div>
                         }
