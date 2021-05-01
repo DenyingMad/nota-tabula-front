@@ -66,7 +66,7 @@ export const TaskListAccordion = (props) => {
                                     <MenuItem onClick={props.handlerCrudActions}>Rename</MenuItem>
                                     <MenuItem onClick={
                                         (e) => {
-                                            const taskListId = props.anchorEl.getAttribute("tasklistid")
+                                            const taskListId = parseInt(props.anchorEl.getAttribute("tasklistid"));
                                             props.setAnchorEl(null);
                                             props.handlerDeleteTaskList(props.epicId, taskListId, totalTasks);
                                         }
