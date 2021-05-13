@@ -66,6 +66,8 @@ export const TaskListAccordion = (props) => {
                                     <MenuItem onClick={props.handlerCrudActions}>Rename</MenuItem>
                                     <MenuItem onClick={
                                         (e) => {
+                                            // при использовании props.taskList.taskListId напрямую передается некорректный id
+                                            // id тасклиста берется из якорного элемента
                                             const taskListId = parseInt(props.anchorEl.getAttribute("tasklistid"));
                                             props.setAnchorEl(null);
                                             props.handlerDeleteTaskList(props.epicId, taskListId, totalTasks);
