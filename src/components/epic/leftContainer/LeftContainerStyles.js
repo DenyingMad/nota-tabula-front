@@ -4,7 +4,7 @@ import {globalStyles} from "../../../styles/GlobalStyles";
 const leftContainerStyles = theme => ({
     ...globalStyles(theme),
     epicSideBar: {
-        width: "17rem",
+        width: "22rem",
         padding: "2rem 1.25rem 2rem 1.25rem",
         borderRight: "1px solid blue",
         gap: "0.5rem",
