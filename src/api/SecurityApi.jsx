@@ -21,13 +21,7 @@ export const register = (creds) =>
         ...getCommonJsonRequestProps(),
         body: JSON.stringify(creds)
     })
-        .then(throwHttpErrors)
-        .then(response => response.json())
-        .then(jwtResponse => jwtResponse.accessToken)
-        .then(accessToken => {
-            setCurrentUserToken(accessToken);
-            return getCurrentUser();
-        });
+        .then(throwHttpErrors);
 
 const setCurrentUserToken = (token) => {
     if (token) {
@@ -45,7 +39,7 @@ export const getCurrentUser = () => {
             setCurrentUserToken(null);
             return null;
         } else {
-            return JSON.parse(decodedJwt.currentUser);
+            return decodedJwt.sub;
         }
     }
     return null;
