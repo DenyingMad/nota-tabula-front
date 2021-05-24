@@ -42,13 +42,18 @@ export const TaskListAccordion = (props) => {
                     />
                     <FormControlLabel
                         className={classes.flexForceRight}
-                        aria-label="crudDropdown"
+                        aria-label={`crud-dropdown-${props.taskList.taskListId}`}
                         onClick={(event) => event.stopPropagation()}
                         onFocus={(event) => event.stopPropagation()}
                         label={false}
                         control={
                             <div>
-                                <Button aria-controls="taskCrud" aria-haspopup="true" onClick={props.handlerCrudMenu}>
+                                <Button
+                                    aria-controls={`task-list-crud-${props.taskList.taskListId}`}
+                                    aria-haspopup="true"
+                                    onClick={props.handlerCrudMenu}
+                                    tasklistid={props.taskList.taskListId}
+                                >
                                     <MoreVert fontSize="small"/>
                                 </Button>
                                 <Menu
@@ -61,8 +66,11 @@ export const TaskListAccordion = (props) => {
                                     <MenuItem onClick={props.handlerCrudActions}>Rename</MenuItem>
                                     <MenuItem onClick={
                                         (e) => {
+                                            // при использовании props.taskList.taskListId напрямую передается некорректный id
+                                            // id тасклиста берется из якорного элемента
+                                            const taskListId = parseInt(props.anchorEl.getAttribute("tasklistid"));
                                             props.setAnchorEl(null);
-                                            props.handlerDeleteTaskList(props.epicId, props.taskList.taskListId, totalTasks)
+                                            props.handlerDeleteTaskList(props.epicId, taskListId, totalTasks);
                                         }
                                     }>Delete</MenuItem>
                                 </Menu>

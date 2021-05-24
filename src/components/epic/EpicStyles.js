@@ -4,7 +4,8 @@ import makeStyles from "@material-ui/core/styles/makeStyles";
 const epicStyles = theme => ({
     ...globalStyles(theme),
     epicContainer: {
-        height: "32rem",
+        maxHeight: "32rem",
+        minHeight: "15rem",
     },
 });
 

@@ -13,13 +13,15 @@ import Checkbox from "@material-ui/core/Checkbox";
 import {useRegisterStyles} from "./RegisterStyles";
 
 export const RegisterView = (props) => {
-    const values = props.values;
+    const classes = useRegisterStyles();
+
     const handleChange = props.handleChange;
     const handleSubmit = props.handleSubmit;
+
+    const values = props.values;
     const touched = props.touched;
     const errors = props.errors;
-    // styles
-    const classes = useRegisterStyles();
+
     return (
         <div className={classes.mainContainer}>
             <div className={clsx(classes.authFormContainer, classes.flexColumn)}>
