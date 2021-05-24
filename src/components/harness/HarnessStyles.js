@@ -58,7 +58,7 @@ const harnessStyles = theme => ({
     toolbar: {
         display: 'flex',
         alignItems: 'center',
-        justifyContent: 'flex-end',
+        // justifyContent: 'flex-end',
         padding: theme.spacing(0, 1),
         ...theme.mixins.toolbar,
     },

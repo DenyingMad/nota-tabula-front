@@ -3,7 +3,7 @@ import {useProfileStyles} from "./ProfileStyles";
 import {Card, TextField, Typography} from "@material-ui/core";
 import clsx from "clsx";
 import * as Yup from "yup";
-import {passwordValidation, usernameValidation} from "../../utils/credentialsValidation";
+import {passwordValidation} from "../../utils/credentialsValidation";
 
 const validationSchema = Yup.object({
     password: Yup
