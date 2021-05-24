@@ -9,10 +9,14 @@ import * as securityApi from "../../api/SecurityApi";
 const handleRegister = (history, context, setContext, setError) => (values) => {
     return securityApi.register(values)
         .then(currentUser => {
-            setContext({...context, currentUser});
-            if (!currentUser)
-                return currentUser;
-            return history.push("/dashboard");
+            return securityApi.login(values)
+                .then(currentUser => {
+                    setContext({...context, currentUser});
+                    if (!currentUser)
+                        return currentUser;
+                    else
+                        return history.push("/dashboard");
+                });
         })
         .catch(error => {
             setError("Login or email are already taken.");

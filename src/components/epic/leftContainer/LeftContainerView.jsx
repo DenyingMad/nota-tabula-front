@@ -20,12 +20,12 @@ export const LeftContainerView = (props) => {
                 value={props.epicDetails.epicName}
                 type="text"
                 onSave={props.handlerRenameEpic}
-                editButtonClassName={classes.renameButton}
+                editButtonClassName={classes.renameButtonLarge}
                 editButtonContent={<Create/>}
                 saveButtonContent={<Done/>}
-                saveButtonClassName={classes.renameButton}
+                saveButtonClassName={classes.renameButtonLarge}
                 cancelButtonContent={<Clear/>}
-                cancelButtonClassName={classes.renameButton}
+                cancelButtonClassName={classes.renameButtonLarge}
                 hideIcons
                 showButtonsOnHover
                 cancelOnUnfocus
@@ -36,7 +36,7 @@ export const LeftContainerView = (props) => {
                 }}
                 renderValue={(value => {
                     return (
-                        <Typography variant="h5" align="center">
+                        <Typography variant="h5" align="left">
                             {value}
                         </Typography>
                     )

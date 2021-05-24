@@ -54,9 +54,17 @@ export const globalStyles = theme => ({
     flexForceLeft: {
         marginRight: "auto",
     },
+    renameButtonLarge: {
+        backgroundColor: "transparent",
+        border: "0px",
+        transform: "scale(0.9)",
+        color: "#9e9e9e",
+    },
     renameButton: {
         backgroundColor: "transparent",
         border: "0px",
+        transform: "scale(0.7)",
+        color: "#9e9e9e",
     },
     scrollY: {
         overflowY: "auto",
