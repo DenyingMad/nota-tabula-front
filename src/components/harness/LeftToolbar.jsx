@@ -37,7 +37,7 @@ export const LeftToolBar = (props) => {
                         <Link
                             to={section.href}
                             key={section.sectionName}
-                            className="leftToolbar-link"
+                            style={{ textDecoration: 'none', color: '#000000' }}
                         >
                             <ListItem button classes={{root: classes.listItem}}>
                                 <ListItemIcon className="section-icon">

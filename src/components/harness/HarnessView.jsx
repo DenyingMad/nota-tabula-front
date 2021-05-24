@@ -14,6 +14,7 @@ const HarnessView = (props) => {
     const {children} = props;
 
     const [open, setOpen] = React.useState(false);
+    const [anchorEl, setAnchorEl] = React.useState(null);
 
     const handleDrawerOpen = () => {
         setOpen(true);
@@ -21,10 +22,27 @@ const HarnessView = (props) => {
     const handleDrawerClose = () => {
         setOpen(false);
     };
+    const handleAccountMenuClick = (event) => {
+        setAnchorEl(event.currentTarget);
+    };
+    const handleAccountMenuClose = () => {
+        setAnchorEl(null);
+    };
+    const handleAccountLogout = () => {
+        setAnchorEl(null);
+    };
+    const handleAccountGoProfile = () => {
+        setAnchorEl(null);
+    }
 
     return (
         <div className={classes.flexRow}>
             <HarnessAppBar
+                anchorEl={anchorEl}
+                handleAccountLogout={handleAccountLogout}
+                handleAccountGoProfile={handleAccountGoProfile}
+                handleAccountMenuClick={handleAccountMenuClick}
+                handleAccountMenuClose={handleAccountMenuClose}
                 handleDrawerOpen={handleDrawerOpen}
                 open={open}
             />
