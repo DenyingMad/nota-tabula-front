@@ -24,7 +24,7 @@ export const changeUserPassword = (password) =>
         ...getCommonHttpRequestProps()
     })
         .then(error => throwHttpErrors(error))
-        .then(response => response.json())
+        .then(response => response)
 
 export const changeUsername = (newUsername) =>
     fetch(`/rest/api/user/username`, {

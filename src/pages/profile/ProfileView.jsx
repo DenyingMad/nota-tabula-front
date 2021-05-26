@@ -46,7 +46,7 @@ export const ProfileView = (props) => {
                 <TextField
                     id="change_password"
                     name="password"
-                    label="Current Password"
+                    label="Enter new password here"
                     size="small"
                     type={props.passwordVisibility ? "text" : "password"}
                     InputProps={{

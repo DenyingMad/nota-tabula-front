@@ -2,18 +2,20 @@ import React, {useContext, useEffect, useState} from "react";
 import * as Yup from "yup";
 import {passwordValidation} from "../../utils/credentialsValidation";
 import {AppContext} from "../../AppContext";
-import {changeUsername, changeUserPassword, getUserDetails, getUserDetailsByLogin} from "../../api/UserApi";
+import {changeUsername, changeUserPassword, getUserDetails} from "../../api/UserApi";
 import {useFormik} from "formik";
 import {ProfileView} from "./ProfileView";
+import {Snackbar} from "@material-ui/core";
+import {Alert} from "@material-ui/lab";
 
-const handleChangePassword = (setError) => (values) => {
-    // dont call this yet
-
+const handleChangePassword = (handleAlertOpen, setError) => (values) => {
     return changeUserPassword(values.password)
         .then(r => {
+            handleAlertOpen("Password change successful!", "success");
         })
         .catch(error => {
             setError("Sample Error.");
+            handleAlertOpen("Password change failed.", "error");
             console.log(error);
         });
 };
@@ -39,36 +41,48 @@ export const Profile = () => {
     const [context, setContext] = useContext(AppContext);
     const [userDetails, setUserDetails] = useState({});
     const [newUsername, setNewUsername] = useState("");
-    const [newPassword, setNewPassword] = useState("If you see this, there's an error");
-    const [PasswordError, setPasswordError] = useState();
     const [showPassword, setShowPassword] = useState(false);
+    const [passwordError, setPasswordError] = useState();
+    const [alertDetails, setAlertDetails] = useState({
+        open: false,
+        message: 'default message',
+        severity: 'info'
+    });
+    const horizontal = 'center';
+    const vertical = 'top';
 
-    const onChangePassword = handleChangePassword(setPasswordError);
+    const handleAlertClose = (event, reason) => {
+        if (reason === 'clickaway') {
+            return;
+        }
+        setAlertDetails({...alertDetails, open: false});
+    };
+    const handleAlertOpen = (message, severity) => {
+        setAlertDetails({...alertDetails, open: true, message: message, severity: severity});
+    };
     const handleClickShowPassword = () => setShowPassword(!showPassword);
     const handleLoginChange = (event) => {
         setNewUsername(event.target.value)
     };
     const handleSubmitUserName = (newUserName) => {
-        // call API
         changeUsername(newUsername)
-            .then(r => {})
-            .catch(err => console.log(err))
+            .then(r => {
+                handleAlertOpen("Successfully changed user name!", "success");
+            })
+            .catch(err => {
+                console.log(err);
+                handleAlertOpen("User name change failed.", "error");
+            })
     };
+    const onChangePassword = handleChangePassword(handleAlertOpen, setPasswordError);
 
     useEffect(() => {
         let cleanupFunction = false;
-        getUserDetailsByLogin(context.currentUser)
-            .then(r => {
-                if (!cleanupFunction) {
-                    setUserDetails(r);
-                    setNewPassword(r.password);
-                }
-            })
-            .catch(error => console.log(error));
         getUserDetails()
             .then(r => {
-                if(r.userName) setNewUsername(r.userName);
-                else setNewUsername("Default userName");
+                setUserDetails(r);
+                if (r.userName) setNewUsername(r.userName);
+                else setNewUsername("Default User Name");
             })
             .catch(err => console.log(err))
         return () => cleanupFunction = true;
@@ -76,7 +90,7 @@ export const Profile = () => {
 
     const formik = useFormik({
         initialValues: {
-            password: newPassword,
+            password: '',
         },
         validationSchema: validationSchema,
         onSubmit: (values) => {
@@ -85,20 +99,31 @@ export const Profile = () => {
     });
 
     return (
-        <ProfileView
-            values={formik.values}
-            userDetails={userDetails}
-            newUsername={newUsername}
-            handleLoginChange={handleLoginChange}
-            handleSubmitUserName={handleSubmitUserName}
-            handlePasswordChange={formik.handleChange}
-            handleSubmit={formik.handleSubmit}
-            errors={formik.errors}
-            message={PasswordError}
-            touched={formik.touched}
-            newPassword={newPassword}
-            passwordVisibility={showPassword}
-            handleClickShowPassword={handleClickShowPassword}
-        />
+        <div>
+            <ProfileView
+                values={formik.values}
+                userDetails={userDetails}
+                newUsername={newUsername}
+                handleLoginChange={handleLoginChange}
+                handleSubmitUserName={handleSubmitUserName}
+                handlePasswordChange={formik.handleChange}
+                handleSubmit={formik.handleSubmit}
+                errors={formik.errors}
+                message={passwordError}
+                touched={formik.touched}
+                passwordVisibility={showPassword}
+                handleClickShowPassword={handleClickShowPassword}
+            />
+            <Snackbar
+                anchorOrigin={{ vertical, horizontal }}
+                open={alertDetails.open}
+                onClose={handleAlertClose}
+                key={vertical + horizontal}
+            >
+                <Alert onClose={handleAlertClose} severity={alertDetails.severity}>
+                    {alertDetails.message}
+                </Alert>
+            </Snackbar>
+        </div>
     )
 };
