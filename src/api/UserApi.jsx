@@ -17,10 +17,10 @@ export const getUserDetailsByLogin = (login) =>
         .then(error => throwHttpErrors(error))
         .then(response => response.json())
 
-export const changeUserPassword = (newPassword) =>
+export const changeUserPassword = (password) =>
     fetch(`/rest/security/user/change-password`, {
         method: "PUT",
-        body: newPassword,
+        body: password,
         ...getCommonHttpRequestProps()
     })
         .then(error => throwHttpErrors(error))

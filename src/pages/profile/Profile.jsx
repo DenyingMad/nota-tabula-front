@@ -9,7 +9,7 @@ import {ProfileView} from "./ProfileView";
 const handleChangePassword = (setError) => (values) => {
     // dont call this yet
 
-    return changeUserPassword(values)
+    return changeUserPassword(values.password)
         .then(r => {
         })
         .catch(error => {
