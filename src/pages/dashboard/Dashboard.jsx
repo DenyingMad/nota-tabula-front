@@ -1,47 +1,40 @@
 import React, {useEffect, useState} from "react";
-import {createEpic, deleteEpic, getAllEpics} from "../../api/EpicApi";
 import {DashboardView} from "./DashboardView";
+import {getPersonalProjects} from "../../api/ProjectApi";
 
 export const Dashboard = (props) => {
-    const [epics, setEpics] = useState([]);
-
-    const handlerAddEpic = () => {
-        AddEpic(epics, setEpics);
-    };
-    const handlerDeleteEpic = (epicId) => {
-        DeleteEpic(epics, setEpics, epicId);
-    };
+    const [personalProjects, setPersonalProjects] = useState([]);
 
     useEffect(() => {
-        let cleanupFunction = false;
-        getAllEpics()
+        getPersonalProjects()
             .then(r => {
-                if (!cleanupFunction) setEpics(r.data);
-            })
-            .catch(error => console.log(error));
-        return () => cleanupFunction = true;
+                setPersonalProjects(r.data);
+            });
     }, []);
+
+    // todo task-service stub
+    // Ожидать добавления в task-service интеграции с user-service
+    const orgProjects = {
+        data: [
+            {
+                isPersonal: false,
+                projectDescription: "string",
+                projectId: "uuid3",
+                projectName: "org Project #1"
+            },
+            {
+                isPersonal: false,
+                projectDescription: "string",
+                projectId: "uuid4",
+                projectName: "org Project #2"
+            }
+        ]
+    };
 
     return (
         <DashboardView
-            epics={epics}
-            handlerAddEpic={handlerAddEpic}
-            handlerDeleteEpic={handlerDeleteEpic}
+            personalProjects={personalProjects}
+            orgProjects={orgProjects.data}
         />
     );
-};
-
-const AddEpic = (epics, setEpics) => {
-    createEpic()
-        .then(r => {
-            setEpics([...epics, r]);
-        })
-        .catch(error => console.log(error));
-};
-
-const DeleteEpic = (epics, setEpics, epicId) => {
-    setEpics(epics.filter(item => item.epicId !== epicId));
-    deleteEpic(epicId)
-        .then(r => r)
-        .catch(error => console.log(error))
 };

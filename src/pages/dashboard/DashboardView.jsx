@@ -1,42 +1,42 @@
 import React from "react";
-import {Epic} from "../../components/epic/Epic";
 import Button from "@material-ui/core/Button";
-import clsx from "clsx";
-import {Add} from "@material-ui/icons";
 import Typography from "@material-ui/core/Typography";
-import {useDashboardStyles} from "./DashboardStyles";
 import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
+import Link from "@material-ui/core/Link";
+import {ListItemText} from "@material-ui/core";
 
 export const DashboardView = (props) => {
-    const classes = useDashboardStyles();
-
+    const {personalProjects, orgProjects} = props;
     return (
-        <div className={clsx(classes.flexColumn, classes.fullWidth)}>
-            <List>
-                {props.epics.map((epic) => (
-                    <ListItem
-                        key={epic.epicId}
-                    >
-                        <Epic epicData={epic}
-                              handlerDeleteEpic={props.handlerDeleteEpic}
-                        />
-                    </ListItem>
-                ))}
-            </List>
-            <Button
-                className={clsx(
-                    classes.addItemButton,
-                    classes.buttonLightBlueColor
-                )}
-                variant="contained"
-                startIcon={<Add/>}
-                onClick={props.handlerAddEpic}
-            >
-                <Typography variant="body1">
-                    Add Epic
-                </Typography>
-            </Button>
+        <div>
+            <Typography>Dashboard</Typography>
+            <Button>Add Project</Button>
+            <div>
+                <Typography>My Projects</Typography>
+                <List>
+                    {personalProjects.map((project) => (
+                        <Link
+                            href={`/project/${project.projectId}`}
+                            key={project.projectId}
+                        >
+                            <ListItem key={project.projectId}>
+                                <ListItemText primary={project.projectName} secondary="Personal project"/>
+                            </ListItem>
+                        </Link>
+                    ))}
+                </List>
+            </div>
+            <div>
+                <Typography>Org. Projects</Typography>
+                <List>
+                    {orgProjects.map((project) => (
+                        <ListItem key={project.projectId}>
+                            <p>{project.projectName}</p>
+                        </ListItem>
+                    ))}
+                </List>
+            </div>
         </div>
     );
 };
