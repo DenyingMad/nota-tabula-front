@@ -31,6 +31,10 @@ const setCurrentUserToken = (token) => {
     }
 };
 
+export const removeUserToken = () => {
+    localStorage.removeItem('current-user-token');
+};
+
 export const getCurrentUser = () => {
     const currentUserToken = localStorage.getItem('current-user-token');
     if (currentUserToken) {

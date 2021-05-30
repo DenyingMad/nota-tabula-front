@@ -58,14 +58,20 @@ const harnessStyles = theme => ({
     toolbar: {
         display: 'flex',
         alignItems: 'center',
-        justifyContent: 'flex-end',
+        // justifyContent: 'flex-end',
         padding: theme.spacing(0, 1),
         ...theme.mixins.toolbar,
+    },
+    appbarContent: {
+      alignItems: 'center',
     },
     content: {
         flexGrow: 1,
         padding: theme.spacing(5),
     },
+    leftToolbarLink: {
+        underline: "none"
+    }
 });
 
 export const useHarnessStyles = makeStyles(harnessStyles, {name: "HarnessStyles"});

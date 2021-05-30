@@ -26,7 +26,7 @@ export const LeftToolBar = (props) => {
                 variant="permanent"
                 open={props.open}
             >
-                <div className={classes.toolbar}>
+                <div className={clsx(classes.toolbar, classes.flexForceRight)}>
                     <IconButton onClick={props.handleDrawerClose}>
                         {theme.direction === 'rtl' ? <ChevronRight/> : <ChevronLeft/>}
                     </IconButton>
@@ -37,7 +37,7 @@ export const LeftToolBar = (props) => {
                         <Link
                             to={section.href}
                             key={section.sectionName}
-                            className="leftToolbar-link"
+                            style={{ textDecoration: 'none', color: '#000000' }}
                         >
                             <ListItem button classes={{root: classes.listItem}}>
                                 <ListItemIcon className="section-icon">

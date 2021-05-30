@@ -7,13 +7,16 @@ import {useHarnessStyles} from "./HarnessStyles";
 import clsx from "clsx";
 import {LeftToolBar} from "./LeftToolbar";
 import {HarnessAppBar} from "./HarnessAppBar";
+import {removeUserToken} from "../../api/SecurityApi";
+import {Settings} from "@material-ui/icons";
 
 const HarnessView = (props) => {
     const classes = useHarnessStyles();
 
-    const {children} = props;
+    const {children, history} = props;
 
     const [open, setOpen] = React.useState(false);
+    const [anchorEl, setAnchorEl] = React.useState(null);
 
     const handleDrawerOpen = () => {
         setOpen(true);
@@ -21,10 +24,30 @@ const HarnessView = (props) => {
     const handleDrawerClose = () => {
         setOpen(false);
     };
+    const handleAccountMenuClick = (event) => {
+        setAnchorEl(event.currentTarget);
+    };
+    const handleAccountMenuClose = () => {
+        setAnchorEl(null);
+    };
+    const handleAccountLogout = () => {
+        setAnchorEl(null);
+        removeUserToken();
+        history.push("/login");
+    };
+    const handleAccountGoProfile = () => {
+        setAnchorEl(null);
+        history.push("/profile");
+    };
 
     return (
         <div className={classes.flexRow}>
             <HarnessAppBar
+                anchorEl={anchorEl}
+                handleAccountLogout={handleAccountLogout}
+                handleAccountGoProfile={handleAccountGoProfile}
+                handleAccountMenuClick={handleAccountMenuClick}
+                handleAccountMenuClose={handleAccountMenuClose}
                 handleDrawerOpen={handleDrawerOpen}
                 open={open}
             />
@@ -54,6 +77,11 @@ const SECTIONS = [
         Icon: AssessmentIcon,
         href: '/reports',
     },
+    {
+        sectionName: 'Settings',
+        Icon: Settings,
+        href: '/profile',
+    }
 ];
 
 export default withRouter(HarnessView);
