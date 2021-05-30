@@ -5,13 +5,27 @@ import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
 import Link from "@material-ui/core/Link";
 import {ListItemText} from "@material-ui/core";
+import {CreateDialog} from "../../components/project/CreateDialog";
 
 export const DashboardView = (props) => {
-    const {personalProjects, orgProjects} = props;
+    const {
+        personalProjects,
+        orgProjects,
+        openCreateDialog,
+        handleOpenCreateForm,
+        handleCloseCreateForm,
+        handleSubmitCreateForm
+    } = props;
+
     return (
         <div>
-            <Typography>Dashboard</Typography>
-            <Button>Add Project</Button>
+            <Typography variant="h3">Dashboard</Typography>
+            <Button variant="outlined" color="primary" onClick={handleOpenCreateForm}>Create Project</Button>
+            <CreateDialog
+                open={openCreateDialog}
+                handleSubmit={handleSubmitCreateForm}
+                handleClose={handleCloseCreateForm}
+            />
             <div>
                 <Typography>My Projects</Typography>
                 <List>
@@ -29,13 +43,7 @@ export const DashboardView = (props) => {
             </div>
             <div>
                 <Typography>Org. Projects</Typography>
-                <List>
-                    {orgProjects.map((project) => (
-                        <ListItem key={project.projectId}>
-                            <p>{project.projectName}</p>
-                        </ListItem>
-                    ))}
-                </List>
+                <Typography>This feature coming soon</Typography>
             </div>
         </div>
     );

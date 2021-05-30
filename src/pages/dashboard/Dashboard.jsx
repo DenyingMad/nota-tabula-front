@@ -1,9 +1,10 @@
 import React, {useEffect, useState} from "react";
 import {DashboardView} from "./DashboardView";
-import {getPersonalProjects} from "../../api/ProjectApi";
+import {createProject, getPersonalProjects} from "../../api/ProjectApi";
 
 export const Dashboard = (props) => {
     const [personalProjects, setPersonalProjects] = useState([]);
+    const [openCreateForm, setOpenCreateForm] = useState(false);
 
     useEffect(() => {
         getPersonalProjects()
@@ -12,29 +13,28 @@ export const Dashboard = (props) => {
             });
     }, []);
 
-    // todo task-service stub
-    // Ожидать добавления в task-service интеграции с user-service
-    const orgProjects = {
-        data: [
-            {
-                isPersonal: false,
-                projectDescription: "string",
-                projectId: "uuid3",
-                projectName: "org Project #1"
-            },
-            {
-                isPersonal: false,
-                projectDescription: "string",
-                projectId: "uuid4",
-                projectName: "org Project #2"
-            }
-        ]
+    const handleOpenCreateForm = () => {
+        setOpenCreateForm(true);
+    };
+    const handleCloseCreateForm = () => {
+        setOpenCreateForm(false);
+    };
+    const handleSubmitCreateForm = (values) => {
+        setOpenCreateForm(false);
+        createProject(values)
+            .then(r => {
+                setPersonalProjects([...personalProjects, r]);
+            })
+            .catch(error => console.log(error));
     };
 
     return (
         <DashboardView
             personalProjects={personalProjects}
-            orgProjects={orgProjects.data}
+            openCreateDialog={openCreateForm}
+            handleOpenCreateForm={handleOpenCreateForm}
+            handleCloseCreateForm={handleCloseCreateForm}
+            handleSubmitCreateForm={handleSubmitCreateForm}
         />
     );
 };
