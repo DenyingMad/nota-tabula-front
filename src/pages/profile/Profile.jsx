@@ -48,6 +48,7 @@ export const Profile = () => {
         message: 'default message',
         severity: 'info'
     });
+
     const horizontal = 'center';
     const vertical = 'top';
 
@@ -115,7 +116,7 @@ export const Profile = () => {
                 handleClickShowPassword={handleClickShowPassword}
             />
             <Snackbar
-                anchorOrigin={{ vertical, horizontal }}
+                anchorOrigin={{vertical, horizontal}}
                 open={alertDetails.open}
                 onClose={handleAlertClose}
                 key={vertical + horizontal}

@@ -79,4 +79,4 @@ export const ProfileView = (props) => {
             </form>
         </Card>
     )
-}
+};
