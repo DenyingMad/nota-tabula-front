@@ -1,47 +1,40 @@
 import React, {useEffect, useState} from "react";
-import {createEpic, deleteEpic, getAllEpics} from "../../api/EpicApi";
 import {DashboardView} from "./DashboardView";
+import {createProject, getPersonalProjects} from "../../api/ProjectApi";
 
 export const Dashboard = (props) => {
-    const [epics, setEpics] = useState([]);
-
-    const handlerAddEpic = () => {
-        AddEpic(epics, setEpics);
-    };
-    const handlerDeleteEpic = (epicId) => {
-        DeleteEpic(epics, setEpics, epicId);
-    };
+    const [personalProjects, setPersonalProjects] = useState([]);
+    const [openCreateForm, setOpenCreateForm] = useState(false);
 
     useEffect(() => {
-        let cleanupFunction = false;
-        getAllEpics()
+        getPersonalProjects()
             .then(r => {
-                if (!cleanupFunction) setEpics(r.data);
+                setPersonalProjects(r.data);
+            });
+    }, []);
+
+    const handleOpenCreateForm = () => {
+        setOpenCreateForm(true);
+    };
+    const handleCloseCreateForm = () => {
+        setOpenCreateForm(false);
+    };
+    const handleSubmitCreateForm = (values) => {
+        setOpenCreateForm(false);
+        createProject(values)
+            .then(r => {
+                setPersonalProjects([...personalProjects, r]);
             })
             .catch(error => console.log(error));
-        return () => cleanupFunction = true;
-    }, []);
+    };
 
     return (
         <DashboardView
-            epics={epics}
-            handlerAddEpic={handlerAddEpic}
-            handlerDeleteEpic={handlerDeleteEpic}
+            personalProjects={personalProjects}
+            openCreateDialog={openCreateForm}
+            handleOpenCreateForm={handleOpenCreateForm}
+            handleCloseCreateForm={handleCloseCreateForm}
+            handleSubmitCreateForm={handleSubmitCreateForm}
         />
     );
-};
-
-const AddEpic = (epics, setEpics) => {
-    createEpic()
-        .then(r => {
-            setEpics([...epics, r]);
-        })
-        .catch(error => console.log(error));
-};
-
-const DeleteEpic = (epics, setEpics, epicId) => {
-    setEpics(epics.filter(item => item.epicId !== epicId));
-    deleteEpic(epicId)
-        .then(r => r)
-        .catch(error => console.log(error))
 };
