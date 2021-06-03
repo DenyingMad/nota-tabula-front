@@ -8,7 +8,7 @@ export const PrioritySelect = (props) => {
     const classes = useTaskInlinedStyles();
 
     return (
-        <FormControl variant="outlined">
+        <FormControl variant="outlined" className={classes.flexForceRight}>
             <Select
                 className={classes.prioritySelect}
                 native

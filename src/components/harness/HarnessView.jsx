@@ -72,11 +72,11 @@ const SECTIONS = [
         Icon: DashboardIcon,
         href: '/dashboard',
     },
-    {
-        sectionName: 'Reports',
-        Icon: AssessmentIcon,
-        href: '/reports',
-    },
+    // {
+    //     sectionName: 'Reports',
+    //     Icon: AssessmentIcon,
+    //     href: '/reports',
+    // },
     {
         sectionName: 'Settings',
         Icon: Settings,

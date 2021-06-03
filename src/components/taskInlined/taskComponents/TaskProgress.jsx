@@ -10,7 +10,8 @@ export const TaskProgress = (props) => {
     return (
         <div className={clsx(
             classes.flexColumn,
-            classes.progressBarContainer
+            classes.progressBarContainer,
+            classes.hidden
         )}>
             <div className={classes.flexRow}>
                 <Typography className={clsx(classes.progressBarText, classes.flexForceLeft)} variant="caption">
